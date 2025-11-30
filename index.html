@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pilgrim - Catholic Streetwear</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<<<<<<< HEAD
     
     <style>
         /* --- RESET --- */
@@ -227,9 +229,17 @@
             .overlay.active { display: block; }
         }
     </style>
+=======
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/card.css">
+    <link rel="stylesheet" href="/css/carousel-container.css">
+    <link rel="stylesheet" href="/css/carousel-card.css">
+>>>>>>> eaca1925f5beb1b86896b1c5a934624e332c18d5
 </head>
+
 <body>
 
+<<<<<<< HEAD
     <div class="marquee-bar"><div class="marquee-content"><span>BLACK FRIDAY PILGRIM 2025 - FRETE GRÁTIS ACIMA DE R$299 - 10X SEM JUROS</span><span>BLACK FRIDAY PILGRIM 2025 - FRETE GRÁTIS ACIMA DE R$299 - 10X SEM JUROS</span></div></div>
 
     <header>
@@ -264,7 +274,14 @@
             <a href="#" style="display:block; margin-bottom: 15px; font-weight: 700; text-transform: uppercase; font-size: 14px; text-decoration: none; color: #000;">Minha Conta</a>
             <a href="#" style="display:block; margin-bottom: 15px; font-weight: 700; text-transform: uppercase; font-size: 14px; text-decoration: none; color: #000;">Meus Pedidos</a>
         </div>
+=======
+    <div class="marquee-bar">
+        <div class="marquee-content"><span>BLACK FRIDAY PILGRIM 2025 - FRETE GRÁTIS ACIMA DE R$299 - 10X SEM
+                JUROS</span><span>BLACK FRIDAY PILGRIM 2025 - FRETE GRÁTIS ACIMA DE R$299 - 10X SEM JUROS</span></div>
+>>>>>>> eaca1925f5beb1b86896b1c5a934624e332c18d5
     </div>
+
+    <div data-include="components/nav.html"></div>
 
     <section class="hero">
         <div class="animated-bg-container">
@@ -283,6 +300,7 @@
     </section>
 
     <section class="products-section">
+<<<<<<< HEAD
         <div class="section-header"><h2>BLACK FRIDAY PILGRIM 2025</h2></div>
         <div class="carousel-container" id="productCarousel">
             <div class="product-card">
@@ -309,34 +327,35 @@
                     <div class="product-info"><h3>CAMISETA OVERSIZED PILGRIM BLESSED</h3><div class="price-container"><span class="current-price">R$ 149,90</span></div></div>
                 </a>
             </div>
+=======
+        <div class="section-header">
+            <h2>BLACK FRIDAY PILGRIM 2025</h2>
+>>>>>>> eaca1925f5beb1b86896b1c5a934624e332c18d5
         </div>
+
+        <carousel-container>
+            <product-card url="/produto/camisa-1" image="imagens/camisa1.jpg" discount="0.25"
+                title="Camisa Oversized Pilgrim" price="120"></product-card>
+            <product-card url="/produto/id" image="imagens/camisa1.jpg" price="120"
+                title="CAMISETA CORE PILGRIM HOLY WHITE"></product-card>
+        </carousel-container>
     </section>
 
     <section class="collections-section">
-        <div class="section-header"><h2>COLEÇÕES</h2></div>
-        <div class="carousel-container" id="collectionsCarousel">
-            <div class="collection-card">
-                <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1000&auto=format&fit=crop" alt="Camisas Pilgrim">
-                <span class="banner-title-span">PILGRIM X CAMISAS</span>
-            </div>
-            <div class="collection-card coming-soon">
-                <div class="coming-soon-badge">EM BREVE</div>
-                <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=1000&auto=format&fit=crop" alt="Bonés">
-                <span class="banner-title-span">PILGRIM X BONÉS<span class="coming-soon-text">LANÇAMENTO 2025</span></span>
-            </div>
-            <div class="collection-card coming-soon">
-                <div class="coming-soon-badge">EM BREVE</div>
-                <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?q=80&w=1000&auto=format&fit=crop" alt="Bermudas">
-                <span class="banner-title-span">PILGRIM X BERMUDAS<span class="coming-soon-text">LANÇAMENTO 2025</span></span>
-            </div>
-             <div class="collection-card coming-soon">
-                <div class="coming-soon-badge">EM BREVE</div>
-                <img src="https://images.unsplash.com/photo-1582586043130-9b69996d91f4?q=80&w=1000&auto=format&fit=crop" alt="Meias">
-                <span class="banner-title-span">PILGRIM X MEIAS<span class="coming-soon-text">LANÇAMENTO 2025</span></span>
-            </div>
+        <div class="section-header">
+            <h2>COLEÇÕES</h2>
         </div>
+        <carousel-container>
+            <carousel-card
+                image="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1000&auto=format&fit=crop"
+                title="PILGRIM X CAMISAS"></carousel-card>
+            <carousel-card
+                image="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=1000&auto=format&fit=crop"
+                title="PILGRIM X CAMISAS" comingSoon description="LANÇAMENTO 2025"></carousel-card>
+        </carousel-container>
     </section>
 
+<<<<<<< HEAD
     <footer>
         <div class="footer-story">
             <div class="footer-logo-circle"><span>P</span></div>
@@ -396,6 +415,15 @@
             slider.addEventListener('mousemove', (e) => { if(!isDown) return; e.preventDefault(); const x = e.pageX - slider.offsetLeft; const walk = (x - startX) * 2; slider.scrollLeft = scrollLeft - walk; });
         });
     </script>
+=======
+    <div data-include="components/footer.html"></div>
+    <div data-include="components/chatbot.html"></div>
+>>>>>>> eaca1925f5beb1b86896b1c5a934624e332c18d5
 
+    <script src="layout/card.js"></script> <!-- Import this to can use the cards -->
+    <script src="layout/carousel-card.js"></script>
+    <script src="layout/carousel-container.js"></script>
+    <script src="scripts/include.js"></script>
 </body>
+
 </html>
