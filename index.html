@@ -1,109 +1,444 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pilgrim - Catholic Streetwear</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         /* --- RESET --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
-        
-        body { 
-            background-color: #fff; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fff;
             overflow-x: hidden;
         }
 
         /* --- 1. BARRA DE ANÚNCIO --- */
         .marquee-bar {
-            background-color: #000; color: #fff; height: 30px; overflow: hidden;
-            display: flex; align-items: center; font-size: 11px; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 1px; position: relative; z-index: 1002;
+            background-color: #000;
+            color: #fff;
+            height: 30px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1002;
         }
-        .marquee-content { display: flex; animation: scroll 20s linear infinite; white-space: nowrap; }
-        .marquee-content span { padding: 0 40px; }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        .marquee-content {
+            display: flex;
+            animation: scroll 20s linear infinite;
+            white-space: nowrap;
+        }
+
+        .marquee-content span {
+            padding: 0 40px;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
 
         /* --- 2. NAVBAR --- */
         header {
-            width: 100%; height: 80px; display: flex; align-items: center; justify-content: space-between;
-            padding: 0 40px; position: fixed; top: 30px; left: 0;
-            background-color: rgba(255, 255, 255, 0.0); transition: all 0.3s ease; z-index: 1000;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            position: fixed;
+            top: 30px;
+            left: 0;
+            background-color: rgba(255, 255, 255, 0.0);
+            transition: all 0.3s ease;
+            z-index: 1000;
         }
-        header:hover { background-color: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .logo a { font-size: 28px; font-weight: 900; color: #000; text-decoration: none; letter-spacing: -1px; font-style: italic; }
-        .nav-links { display: flex; gap: 30px; list-style: none; }
-        .mobile-menu-btn { display: none; } .mobile-drawer { display: none; }
-        .nav-links li a { text-decoration: none; color: #000; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; display: block; height: 15px; overflow: hidden; position: relative; }
-        .roll-container { display: block; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        .roll-text { display: block; height: 15px; line-height: 15px; }
-        .nav-links li a:hover .roll-container { transform: translateY(-15px); }
-        .nav-links li a.sale .roll-text { color: #d32f2f; }
-        .nav-actions { display: flex; align-items: center; gap: 25px; }
-        .search-box { background-color: rgba(0,0,0,0.05); padding: 10px 15px; display: flex; align-items: center; width: 200px; border-radius: 4px; }
-        .search-box input { border: none; background: transparent; outline: none; font-size: 13px; width: 100%; }
-        .action-item { display: flex; align-items: center; gap: 8px; text-decoration: none; color: #000; font-size: 13px; font-weight: 500; text-transform: uppercase; }
-        .action-item i { font-size: 20px; }
-        .cart-count { position: absolute; top: -5px; right: -8px; background-color: #000; color: #fff; font-size: 10px; width: 16px; height: 16px; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
-        .cart-icon-container { position: relative; }
+
+        header:hover {
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo a {
+            font-size: 28px;
+            font-weight: 900;
+            color: #000;
+            text-decoration: none;
+            letter-spacing: -1px;
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+        }
+
+        .mobile-drawer {
+            display: none;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #000;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+            height: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .roll-container {
+            display: block;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .roll-text {
+            display: block;
+            height: 15px;
+            line-height: 15px;
+        }
+
+        .nav-links li a:hover .roll-container {
+            transform: translateY(-15px);
+        }
+
+        .nav-links li a.sale .roll-text {
+            color: #d32f2f;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .search-box {
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            width: 200px;
+            border-radius: 4px;
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            outline: none;
+            font-size: 13px;
+            width: 100%;
+        }
+
+        .action-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #000;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .action-item i {
+            font-size: 20px;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -8px;
+            background-color: #000;
+            color: #fff;
+            font-size: 10px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cart-icon-container {
+            position: relative;
+        }
 
         /* --- 3. HERO SECTION --- */
         .hero {
-            width: 100%; height: 100vh; position: relative; overflow: hidden; 
-            background-color: #e0e0e0; display: flex; align-items: center; justify-content: center;
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-top: -30px;
         }
+
         .animated-bg-container {
-            position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; z-index: 1;
-            opacity: 0.15; transform: rotate(-15deg); animation: move-bg 30s linear infinite;
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            z-index: 1;
+            opacity: 0.15;
+            transform: rotate(-15deg);
+            animation: move-bg 30s linear infinite;
         }
-        .bg-text-row { font-size: 80px; font-weight: 900; text-transform: uppercase; color: #000; line-height: 0.9; white-space: nowrap; margin-bottom: 10px; }
-        @keyframes move-bg { 0% { transform: rotate(-15deg) translateY(0); } 100% { transform: rotate(-15deg) translateY(-200px); } }
+
+        .bg-text-row {
+            font-size: 80px;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: #000;
+            line-height: 0.9;
+            white-space: nowrap;
+            margin-bottom: 10px;
+        }
+
+        @keyframes move-bg {
+            0% {
+                transform: rotate(-15deg) translateY(0);
+            }
+
+            100% {
+                transform: rotate(-15deg) translateY(-200px);
+            }
+        }
+
         .hero h1 {
-            position: relative; z-index: 10; color: white; font-size: 70px; font-weight: 900; font-style: italic; text-transform: uppercase;
-            text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 5px 5px 15px rgba(0,0,0,0.5); text-align: center; pointer-events: none;
+            position: relative;
+            z-index: 10;
+            color: white;
+            font-size: 70px;
+            font-weight: 900;
+            font-style: italic;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 5px 5px 15px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            pointer-events: none;
         }
 
         /* --- 4. CAROUSEL GERAL --- */
-        .section-header { padding: 0 40px; margin-bottom: 30px; }
-        .section-header h2 { font-size: 24px; font-weight: 900; text-transform: uppercase; font-style: italic; }
-        .carousel-container {
-            display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 20px;
-            padding: 0 40px 20px 40px;
-            scrollbar-width: thin; scrollbar-color: #000 #f4f4f4;
+        .section-header {
+            padding: 0 40px;
+            margin-bottom: 30px;
         }
-        .carousel-container::-webkit-scrollbar { height: 6px; }
-        .carousel-container::-webkit-scrollbar-track { background: #f4f4f4; border-radius: 10px; margin: 0 40px; }
-        .carousel-container::-webkit-scrollbar-thumb { background-color: #000; border-radius: 10px; border: 1px solid #f4f4f4; }
-        .carousel-container::-webkit-scrollbar-thumb:hover { background-color: #333; }
+
+        .section-header h2 {
+            font-size: 24px;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-style: italic;
+        }
+
+        .carousel-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 20px;
+            padding: 0 40px 20px 40px;
+            scrollbar-width: thin;
+            scrollbar-color: #000 #f4f4f4;
+        }
+
+        .carousel-container::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .carousel-container::-webkit-scrollbar-track {
+            background: #f4f4f4;
+            border-radius: 10px;
+            margin: 0 40px;
+        }
+
+        .carousel-container::-webkit-scrollbar-thumb {
+            background-color: #000;
+            border-radius: 10px;
+            border: 1px solid #f4f4f4;
+        }
+
+        .carousel-container::-webkit-scrollbar-thumb:hover {
+            background-color: #333;
+        }
 
         /* Produtos */
-        .products-section { padding: 50px 0 30px 0; background: #fff; }
-        .product-card { min-width: 280px; flex-shrink: 0; cursor: pointer; position: relative; }
-        .product-card .image-wrapper { width: 100%; height: 350px; background-color: #f4f4f4; overflow: hidden; margin-bottom: 15px; position: relative; }
-        .product-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .product-card:hover img { transform: scale(1.05); }
-        .discount-badge { position: absolute; top: 10px; left: 10px; background-color: #000; color: #fff; padding: 4px 8px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
-        .product-info h3 { font-size: 13px; font-weight: 600; text-transform: uppercase; margin-bottom: 5px; line-height: 1.4; color: #333; }
-        .price-container { display: flex; gap: 10px; font-size: 13px; }
-        .old-price { text-decoration: line-through; color: #999; }
-        .current-price { font-weight: 700; color: #000; }
+        .products-section {
+            padding: 50px 0 30px 0;
+            background: #fff;
+        }
+
+        .product-card {
+            min-width: 280px;
+            flex-shrink: 0;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card .image-wrapper {
+            width: 100%;
+            height: 350px;
+            background-color: #f4f4f4;
+            overflow: hidden;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #000;
+            color: #fff;
+            padding: 4px 8px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .product-info h3 {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            line-height: 1.4;
+            color: #333;
+        }
+
+        .price-container {
+            display: flex;
+            gap: 10px;
+            font-size: 13px;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        .current-price {
+            font-weight: 700;
+            color: #000;
+        }
 
         /* Coleções */
-        .collections-section { padding: 50px 0 80px 0; background: #fff; }
-        .collection-card { min-width: 350px; height: 480px; flex-shrink: 0; position: relative; cursor: pointer; overflow: hidden; background-color: #000; }
-        .collection-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); opacity: 0.9; }
-        .banner-title-span { position: absolute; bottom: 30px; left: 20px; color: #fff; font-size: 24px; font-weight: 900; text-transform: uppercase; font-style: italic; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); z-index: 2; }
-        .collection-card:hover img { transform: scale(1.05); opacity: 0.7; }
-        .collection-card.coming-soon { cursor: default; }
-        .collection-card.coming-soon img { filter: grayscale(100%) brightness(0.4); }
-        .coming-soon-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 2px solid #fff; color: #fff; padding: 10px 20px; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; z-index: 3; white-space: nowrap; }
-        .coming-soon-text { display: block; font-size: 12px; font-weight: 400; color: #ccc; font-style: normal; margin-top: 5px; }
+        .collections-section {
+            padding: 50px 0 80px 0;
+            background: #fff;
+        }
+
+        .collection-card {
+            min-width: 350px;
+            height: 480px;
+            flex-shrink: 0;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .collection-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0.9;
+        }
+
+        .banner-title-span {
+            position: absolute;
+            bottom: 30px;
+            left: 20px;
+            color: #fff;
+            font-size: 24px;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-style: italic;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+            z-index: 2;
+        }
+
+        .collection-card:hover img {
+            transform: scale(1.05);
+            opacity: 0.7;
+        }
+
+        .collection-card.coming-soon {
+            cursor: default;
+        }
+
+        .collection-card.coming-soon img {
+            filter: grayscale(100%) brightness(0.4);
+        }
+
+        .coming-soon-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid #fff;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            z-index: 3;
+            white-space: nowrap;
+        }
+
+        .coming-soon-text {
+            display: block;
+            font-size: 12px;
+            font-weight: 400;
+            color: #ccc;
+            font-style: normal;
+            margin-top: 5px;
+        }
 
 
         /* --- 6. FOOTER (NOVO) --- */
-        
+
         /* Parte 1: História (Fundo Cinza) */
         .footer-story {
             background-color: #f9f9f9;
@@ -129,7 +464,8 @@
             font-size: 40px;
             font-weight: 900;
             font-style: italic;
-            font-family: serif; /* Estilo mais clássico para o P */
+            font-family: serif;
+            /* Estilo mais clássico para o P */
         }
 
         .footer-story-text {
@@ -141,7 +477,8 @@
 
         /* Parte 2: Links e News (Fundo Branco) */
         .footer-main {
-            padding: 60px 40px 100px 40px; /* Padding bottom extra para não cortar com o botão flutuante */
+            padding: 60px 40px 100px 40px;
+            /* Padding bottom extra para não cortar com o botão flutuante */
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
@@ -188,7 +525,10 @@
             outline: none;
             transition: border-color 0.3s;
         }
-        .input-underline:focus { border-bottom-color: #000; }
+
+        .input-underline:focus {
+            border-bottom-color: #000;
+        }
 
         .btn-subscribe {
             width: 100%;
@@ -203,7 +543,10 @@
             margin-top: 10px;
             transition: background 0.3s;
         }
-        .btn-subscribe:hover { background-color: #000; }
+
+        .btn-subscribe:hover {
+            background-color: #000;
+        }
 
         .privacy-text {
             font-size: 10px;
@@ -215,28 +558,52 @@
         .footer-list {
             list-style: none;
         }
-        .footer-list li { margin-bottom: 12px; }
+
+        .footer-list li {
+            margin-bottom: 12px;
+        }
+
         .footer-list a {
             text-decoration: none;
             color: #666;
             font-size: 13px;
             transition: color 0.2s;
         }
-        .footer-list a:hover { color: #000; text-decoration: underline; }
+
+        .footer-list a:hover {
+            color: #000;
+            text-decoration: underline;
+        }
 
         /* Ícones Sociais e Selos */
         .footer-bottom-row {
             width: 100%;
             display: flex;
-            justify-content: space-between; /* Ícones na esq, selos na dir */
+            justify-content: space-between;
+            /* Ícones na esq, selos na dir */
             align-items: center;
             margin-top: 40px;
             padding-top: 20px;
         }
 
-        .social-icons { display: flex; gap: 20px; }
-        .social-icons i { font-size: 20px; color: #000; cursor: pointer; }
-        .security-badge { display: flex; align-items: center; gap: 10px; font-size: 12px; color: #555; }
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icons i {
+            font-size: 20px;
+            color: #000;
+            cursor: pointer;
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            color: #555;
+        }
 
 
         /* --- 7. BOTÃO FLUTUANTE CHATBOT --- */
@@ -252,8 +619,9 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            z-index: 9999; /* Fica acima de tudo */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            /* Fica acima de tudo */
             transition: transform 0.3s ease;
         }
 
@@ -271,66 +639,185 @@
 
         /* --- RESPONSIVIDADE FOOTER --- */
         @media (max-width: 900px) {
-            header { padding: 0 20px; height: 60px; }
-            .nav-links, .search-box, .action-item span, .action-item:not(.cart-icon-container) { display: none; }
-            .logo { position: absolute; left: 50%; transform: translateX(-50%); }
-            .logo a { font-size: 22px; }
-            .mobile-menu-btn { display: block; font-size: 20px; cursor: pointer; }
-            .mobile-drawer { display: block; position: fixed; top: 0; left: -100%; width: 80%; height: 100vh; background: white; z-index: 2000; padding: 20px; transition: 0.3s ease; }
-            .mobile-drawer.active { left: 0; }
-            .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
-            .close-btn { font-size: 24px; cursor: pointer; }
-            .mobile-links { list-style: none; }
-            .mobile-links li { margin-bottom: 20px; }
-            .mobile-links a { text-decoration: none; color: #000; font-size: 18px; font-weight: 700; text-transform: uppercase; }
-            .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1500; }
-            .overlay.active { display: block; }
-            .hero h1 { font-size: 40px; padding: 0 20px; }
-            .bg-text-row { font-size: 50px; }
-            .products-section, .collections-section { padding: 30px 0; }
-            .section-header { padding: 0 20px; }
-            .carousel-container { padding: 0 20px 20px 20px; gap: 10px; scroll-snap-type: x mandatory; }
-            .carousel-container::-webkit-scrollbar { height: 4px; }
-            .carousel-container::-webkit-scrollbar-track { margin: 0 20px; }
-            .product-card { min-width: 160px; width: 160px; scroll-snap-align: start; }
-            .product-card .image-wrapper { height: 220px; }
-            .collection-card { min-width: 260px; height: 380px; scroll-snap-align: start; }
-            .banner-title-span { font-size: 18px; left: 15px; bottom: 20px; }
+            header {
+                padding: 0 20px;
+                height: 60px;
+            }
+
+            .nav-links,
+            .search-box,
+            .action-item span,
+            .action-item:not(.cart-icon-container) {
+                display: none;
+            }
+
+            .logo {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .logo a {
+                font-size: 22px;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                font-size: 20px;
+                cursor: pointer;
+            }
+
+            .mobile-drawer {
+                display: block;
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background: white;
+                z-index: 2000;
+                padding: 20px;
+                transition: 0.3s ease;
+            }
+
+            .mobile-drawer.active {
+                left: 0;
+            }
+
+            .drawer-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 30px;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 15px;
+            }
+
+            .close-btn {
+                font-size: 24px;
+                cursor: pointer;
+            }
+
+            .mobile-links {
+                list-style: none;
+            }
+
+            .mobile-links li {
+                margin-bottom: 20px;
+            }
+
+            .mobile-links a {
+                text-decoration: none;
+                color: #000;
+                font-size: 18px;
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 1500;
+            }
+
+            .overlay.active {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+                padding: 0 20px;
+            }
+
+            .bg-text-row {
+                font-size: 50px;
+            }
+
+            .products-section,
+            .collections-section {
+                padding: 30px 0;
+            }
+
+            .section-header {
+                padding: 0 20px;
+            }
+
+            .carousel-container {
+                padding: 0 20px 20px 20px;
+                gap: 10px;
+                scroll-snap-type: x mandatory;
+            }
+
+            .carousel-container::-webkit-scrollbar {
+                height: 4px;
+            }
+
+            .carousel-container::-webkit-scrollbar-track {
+                margin: 0 20px;
+            }
+
+            .product-card {
+                min-width: 160px;
+                width: 160px;
+                scroll-snap-align: start;
+            }
+
+            .product-card .image-wrapper {
+                height: 220px;
+            }
+
+            .collection-card {
+                min-width: 260px;
+                height: 380px;
+                scroll-snap-align: start;
+            }
+
+            .banner-title-span {
+                font-size: 18px;
+                left: 15px;
+                bottom: 20px;
+            }
 
             /* Footer Mobile */
-            .footer-story { flex-direction: column; text-align: center; gap: 20px; padding: 40px 20px; }
-            .footer-main { flex-direction: column; padding: 40px 20px 80px 20px; } /* 80px bottom pra não cobrir o chat */
-            .footer-col-links { border-bottom: 1px solid #eee; padding-bottom: 20px; }
-            .footer-bottom-row { flex-direction: column; gap: 20px; }
+            .footer-story {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+                padding: 40px 20px;
+            }
+
+            .footer-main {
+                flex-direction: column;
+                padding: 40px 20px 80px 20px;
+            }
+
+            /* 80px bottom pra não cobrir o chat */
+            .footer-col-links {
+                border-bottom: 1px solid #eee;
+                padding-bottom: 20px;
+            }
+
+            .footer-bottom-row {
+                flex-direction: column;
+                gap: 20px;
+            }
         }
     </style>
 </head>
+
 <body>
 
-    <div class="marquee-bar"><div class="marquee-content"><span>BLACK FRIDAY PILGRIM 2025 - FRETE GRÁTIS ACIMA DE R$299 - 10X SEM JUROS</span><span>BLACK FRIDAY PILGRIM 2025 - FRETE GRÁTIS ACIMA DE R$299 - 10X SEM JUROS</span></div></div>
-
-    <header>
-        <div class="mobile-menu-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
-        <div class="logo"><a href="#">PILGRIM</a></div>
-        <ul class="nav-links">
-            <li><a href="#"><span class="roll-container"><span class="roll-text">LOJA</span><span class="roll-text">LOJA</span></span></a></li>
-            <li><a href="#"><span class="roll-container"><span class="roll-text">COLEÇÕES</span><span class="roll-text">COLEÇÕES</span></span></a></li>
-            <li><a href="#"><span class="roll-container"><span class="roll-text">LANÇAMENTOS</span><span class="roll-text">LANÇAMENTOS</span></span></a></li>
-            <li><a href="#" class="sale"><span class="roll-container"><span class="roll-text">SALE</span><span class="roll-text">SALE</span></span></a></li>
-        </ul>
-        <div class="nav-actions">
-            <div class="search-box"><input type="text" placeholder="Procurar"><i class="fa-solid fa-magnifying-glass"></i></div>
-            <a href="#" class="action-item"><i class="fa-regular fa-heart"></i><span>Wishlist</span></a>
-            <a href="#" class="action-item"><i class="fa-regular fa-user"></i><span>Entrar</span></a>
-            <a href="#" class="action-item cart-icon-container"><i class="fa-solid fa-bag-shopping"></i><div class="cart-count">0</div></a>
-        </div>
-    </header>
-
-    <div class="overlay" onclick="toggleMenu()"></div>
-    <div class="mobile-drawer" id="mobileDrawer">
-        <div class="drawer-header"><span style="font-weight:900; font-style:italic;">MENU</span><i class="fa-solid fa-xmark close-btn" onclick="toggleMenu()"></i></div>
-        <ul class="mobile-links"><li><a href="#">Loja</a></li><li><a href="#">Coleções</a></li><li><a href="#">Lançamentos</a></li><li><a href="#" style="color: #d32f2f;">Sale</a></li></ul>
+    <div class="marquee-bar">
+        <div class="marquee-content"><span>BLACK FRIDAY PILGRIM 2025 - FRETE GRÁTIS ACIMA DE R$299 - 10X SEM
+                JUROS</span><span>BLACK FRIDAY PILGRIM 2025 - FRETE GRÁTIS ACIMA DE R$299 - 10X SEM JUROS</span></div>
     </div>
+
+    <div data-include="components/nav.html"></div>
 
     <section class="hero">
         <div class="animated-bg-container">
@@ -349,28 +836,21 @@
     </section>
 
     <section class="products-section">
-        <div class="section-header"><h2>BLACK FRIDAY PILGRIM 2025</h2></div>
-        
+        <div class="section-header">
+            <h2>BLACK FRIDAY PILGRIM 2025</h2>
+        </div>
+
         <div class="carousel-container" id="productCarousel">
-            
-            <div class="product-card">
-                <a href="produto.html"> <div class="image-wrapper">
-                        <img src="imagens/camisa1.jpg" alt="Camiseta" onerror="this.src='https://placehold.co/400x500/EEE/31343C?text=CAMISA+1'">
-                        <span class="discount-badge">-40% OFF</span>
-                    </div>
-                    <div class="product-info">
-                        <h3>CAMISETA CORE PILGRIM CROSS BLACK</h3>
-                        <div class="price-container">
-                            <span class="old-price">R$ 169,99</span>
-                            <span class="current-price">R$ 101,99</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
+
+            <product-card url="/produto/camisa-1" image="/img/camisa1.png" discount="0.25"
+                title="Camisa Oversized Pilgrim" price="120"></product-card>
+
 
             <div class="product-card">
-                <a href="produto.html"> <div class="image-wrapper">
-                        <img src="imagens/camisa2.jpg" alt="Camiseta" onerror="this.src='https://placehold.co/400x500/EEE/31343C?text=CAMISA+2'">
+                <a href="produto.html">
+                    <div class="image-wrapper">
+                        <img src="imagens/camisa2.jpg" alt="Camiseta"
+                            onerror="this.src='https://placehold.co/400x500/EEE/31343C?text=CAMISA+2'">
                         <span class="discount-badge">-40% OFF</span>
                     </div>
                     <div class="product-info">
@@ -384,8 +864,10 @@
             </div>
 
             <div class="product-card">
-                <a href="produto.html"> <div class="image-wrapper">
-                        <img src="imagens/camisa1.jpg" alt="Camiseta" onerror="this.src='https://placehold.co/400x500/EEE/31343C?text=CAMISA+3'">
+                <a href="produto.html">
+                    <div class="image-wrapper">
+                        <img src="imagens/camisa1.jpg" alt="Camiseta"
+                            onerror="this.src='https://placehold.co/400x500/EEE/31343C?text=CAMISA+3'">
                         <span class="discount-badge">-60% OFF</span>
                     </div>
                     <div class="product-info">
@@ -399,8 +881,10 @@
             </div>
 
             <div class="product-card">
-                <a href="produto.html"> <div class="image-wrapper">
-                        <img src="imagens/camisa1.jpg" alt="Camiseta" onerror="this.src='https://placehold.co/400x500/EEE/31343C?text=CAMISA+4'">
+                <a href="produto.html">
+                    <div class="image-wrapper">
+                        <img src="imagens/camisa1.jpg" alt="Camiseta"
+                            onerror="this.src='https://placehold.co/400x500/EEE/31343C?text=CAMISA+4'">
                     </div>
                     <div class="product-info">
                         <h3>CAMISETA OVERSIZED PILGRIM BLESSED</h3>
@@ -415,129 +899,44 @@
     </section>
 
     <section class="collections-section">
-        <div class="section-header"><h2>COLEÇÕES</h2></div>
+        <div class="section-header">
+            <h2>COLEÇÕES</h2>
+        </div>
         <div class="carousel-container" id="collectionsCarousel">
             <div class="collection-card">
-                <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1000&auto=format&fit=crop" alt="Camisas Pilgrim">
+                <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1000&auto=format&fit=crop"
+                    alt="Camisas Pilgrim">
                 <span class="banner-title-span">PILGRIM X CAMISAS</span>
             </div>
             <div class="collection-card coming-soon">
                 <div class="coming-soon-badge">EM BREVE</div>
-                <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=1000&auto=format&fit=crop" alt="Bonés">
-                <span class="banner-title-span">PILGRIM X BONÉS<span class="coming-soon-text">LANÇAMENTO 2025</span></span>
+                <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=1000&auto=format&fit=crop"
+                    alt="Bonés">
+                <span class="banner-title-span">PILGRIM X BONÉS<span class="coming-soon-text">LANÇAMENTO
+                        2025</span></span>
             </div>
             <div class="collection-card coming-soon">
                 <div class="coming-soon-badge">EM BREVE</div>
-                <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?q=80&w=1000&auto=format&fit=crop" alt="Bermudas">
-                <span class="banner-title-span">PILGRIM X BERMUDAS<span class="coming-soon-text">LANÇAMENTO 2025</span></span>
+                <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?q=80&w=1000&auto=format&fit=crop"
+                    alt="Bermudas">
+                <span class="banner-title-span">PILGRIM X BERMUDAS<span class="coming-soon-text">LANÇAMENTO
+                        2025</span></span>
             </div>
-             <div class="collection-card coming-soon">
+            <div class="collection-card coming-soon">
                 <div class="coming-soon-badge">EM BREVE</div>
-                <img src="https://images.unsplash.com/photo-1582586043130-9b69996d91f4?q=80&w=1000&auto=format&fit=crop" alt="Meias">
-                <span class="banner-title-span">PILGRIM X MEIAS<span class="coming-soon-text">LANÇAMENTO 2025</span></span>
+                <img src="https://images.unsplash.com/photo-1582586043130-9b69996d91f4?q=80&w=1000&auto=format&fit=crop"
+                    alt="Meias">
+                <span class="banner-title-span">PILGRIM X MEIAS<span class="coming-soon-text">LANÇAMENTO
+                        2025</span></span>
             </div>
         </div>
     </section>
 
-    <footer>
-        
-        <div class="footer-story">
-            <div class="footer-logo-circle">
-                <span>P</span>
-            </div>
-            <div class="footer-story-text">
-                Desde 2025, a <strong>PILGRIM</strong> constrói sua história na intersecção entre a fé e o asfalto. Movida pela coragem de expressar devoção através do estilo urbano, nascemos do desejo de vestir os peregrinos modernos. Nossa missão é criar peças que não apenas vestem, mas comunicam uma identidade: Blessed & Street. Pilgrim Yourself: um convite para caminhar com propósito.
-            </div>
-        </div>
+    <div data-include="components/footer.html"></div>
+    <div data-include="components/chatbot.html"></div>
 
-        <div class="footer-main">
-            
-            <div class="footer-col-news">
-                <h4 class="footer-title">Registre-se para ganhar descontos exclusivos:</h4>
-                <p class="news-text">Assine nossa newsletter:</p>
-                <form action="#" onsubmit="event.preventDefault(); alert('Obrigado por se inscrever!');">
-                    <div class="input-group">
-                        <input type="text" placeholder="Nome" class="input-underline">
-                    </div>
-                    <div class="input-group">
-                        <input type="email" placeholder="E-mail" class="input-underline">
-                    </div>
-                    <button type="submit" class="btn-subscribe">Inscrever-se</button>
-                    <p class="privacy-text">Ao enviar você concorda com os termos descritos na <a href="#" style="color:#000;">Política de Privacidade</a></p>
-                </form>
-            </div>
-
-            <div class="footer-col-links">
-                <h4 class="footer-title">Sobre</h4>
-                <ul class="footer-list">
-                    <li><a href="#">Quem Somos</a></li>
-                    <li><a href="#">Perguntas Frequentes</a></li>
-                    <li><a href="#">Nossas Lojas</a></li>
-                    <li><a href="#">Coleções</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col-links">
-                <h4 class="footer-title">Meus Dados</h4>
-                <ul class="footer-list">
-                    <li><a href="#">Minha Conta</a></li>
-                    <li><a href="#">Meus Pedidos</a></li>
-                    <li><a href="#">Lista de Desejos</a></li>
-                    <li><a href="#">Trocas e Devoluções</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col-links">
-                <h4 class="footer-title">Políticas</h4>
-                <ul class="footer-list">
-                    <li><a href="#">Políticas Trocas e Devoluções</a></li>
-                    <li><a href="#">Entrega e Frete</a></li>
-                    <li><a href="#">Pagamento</a></li>
-                    <li><a href="#">Privacidade</a></li>
-                    <li><a href="#">Termos de Uso</a></li>
-                </ul>
-            </div>
-
-             <div class="footer-col-links">
-                <h4 class="footer-title">Contato</h4>
-                <ul class="footer-list">
-                    <li><a href="#">Fale Conosco</a></li>
-                    <li style="font-size: 13px; color: #666; margin-bottom: 12px;">(11) 99999-9999</li>
-                    <li><a href="mailto:atendimento@pilgrim.com.br" style="font-weight: 700;">atendimento@pilgrim.com.br</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-bottom-row">
-                <div class="social-icons">
-                    <i class="fa-brands fa-instagram"></i>
-                    <i class="fa-brands fa-facebook-f"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-pinterest"></i>
-                    <i class="fa-brands fa-youtube"></i>
-                    <i class="fa-brands fa-whatsapp"></i>
-                </div>
-                <div class="security-badge">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    <span>Google Safe Browsing</span>
-                </div>
-            </div>
-
-        </div>
-    </footer>
-
-    <div class="floating-chat-btn" id="chatbot-trigger" onclick="alert('Integração com IA em breve!')">
-        <span class="chat-icon">P</span>
-        </div>
-
-
+    <script src="scripts/include.js"></script>
     <script>
-        function toggleMenu() {
-            const drawer = document.getElementById('mobileDrawer');
-            const overlay = document.querySelector('.overlay');
-            drawer.classList.toggle('active');
-            overlay.classList.toggle('active');
-        }
-
         const sliders = [document.getElementById('productCarousel'), document.getElementById('collectionsCarousel')];
         sliders.forEach(slider => {
             let isDown = false;
@@ -550,7 +949,7 @@
             slider.addEventListener('mouseleave', () => { isDown = false; slider.style.cursor = 'pointer'; });
             slider.addEventListener('mouseup', () => { isDown = false; slider.style.cursor = 'pointer'; });
             slider.addEventListener('mousemove', (e) => {
-                if(!isDown) return; e.preventDefault();
+                if (!isDown) return; e.preventDefault();
                 const x = e.pageX - slider.offsetLeft; const walk = (x - startX) * 2;
                 slider.scrollLeft = scrollLeft - walk;
             });
@@ -558,4 +957,5 @@
     </script>
 
 </body>
+
 </html>
