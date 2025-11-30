@@ -7,349 +7,9 @@
     <title>Pilgrim - Catholic Streetwear</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/css/style.css">
-
-    <style>
-        /* --- 1. BARRA DE ANÚNCIO --- */
-        .marquee-bar {
-            background-color: #000;
-            color: #fff;
-            height: 30px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 1002;
-        }
-
-        .marquee-content {
-            display: flex;
-            animation: scroll 20s linear infinite;
-            white-space: nowrap;
-        }
-
-        .marquee-content span {
-            padding: 0 40px;
-        }
-
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        /* --- 3. HERO SECTION --- */
-        .hero {
-            width: 100%;
-            height: 100vh;
-            position: relative;
-            overflow: hidden;
-            background-color: #e0e0e0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: -30px;
-        }
-
-        .animated-bg-container {
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            z-index: 1;
-            opacity: 0.15;
-            transform: rotate(-15deg);
-            animation: move-bg 30s linear infinite;
-        }
-
-        .bg-text-row {
-            font-size: 80px;
-            font-weight: 900;
-            text-transform: uppercase;
-            color: #000;
-            line-height: 0.9;
-            white-space: nowrap;
-            margin-bottom: 10px;
-        }
-
-        @keyframes move-bg {
-            0% {
-                transform: rotate(-15deg) translateY(0);
-            }
-
-            100% {
-                transform: rotate(-15deg) translateY(-200px);
-            }
-        }
-
-        .hero h1 {
-            position: relative;
-            z-index: 10;
-            color: white;
-            font-size: 70px;
-            font-weight: 900;
-            font-style: italic;
-            text-transform: uppercase;
-            text-shadow:
-                3px 3px 0 #000,
-                -1px -1px 0 #000,
-                1px -1px 0 #000,
-                -1px 1px 0 #000,
-                5px 5px 15px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            pointer-events: none;
-        }
-
-        /* --- 4. CAROUSEL GERAL --- */
-        .section-header {
-            padding: 0 40px;
-            margin-bottom: 30px;
-        }
-
-        .section-header h2 {
-            font-size: 24px;
-            font-weight: 900;
-            text-transform: uppercase;
-            font-style: italic;
-        }
-
-        .carousel-container {
-            display: flex;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            gap: 20px;
-            padding: 0 40px 20px 40px;
-            scrollbar-width: thin;
-            scrollbar-color: #000 #f4f4f4;
-        }
-
-        .carousel-container::-webkit-scrollbar {
-            height: 6px;
-        }
-
-        .carousel-container::-webkit-scrollbar-track {
-            background: #f4f4f4;
-            border-radius: 10px;
-            margin: 0 40px;
-        }
-
-        .carousel-container::-webkit-scrollbar-thumb {
-            background-color: #000;
-            border-radius: 10px;
-            border: 1px solid #f4f4f4;
-        }
-
-        .carousel-container::-webkit-scrollbar-thumb:hover {
-            background-color: #333;
-        }
-
-        /* Produtos */
-        .products-section {
-            padding: 50px 0 30px 0;
-            background: #fff;
-        }
-
-        .product-card {
-            min-width: 280px;
-            flex-shrink: 0;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .product-card .image-wrapper {
-            width: 100%;
-            height: 350px;
-            background-color: #f4f4f4;
-            overflow: hidden;
-            margin-bottom: 15px;
-            position: relative;
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .product-card:hover img {
-            transform: scale(1.05);
-        }
-
-        .discount-badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background-color: #000;
-            color: #fff;
-            padding: 4px 8px;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .product-info h3 {
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-            line-height: 1.4;
-            color: #333;
-        }
-
-        .price-container {
-            display: flex;
-            gap: 10px;
-            font-size: 13px;
-        }
-
-        .old-price {
-            text-decoration: line-through;
-            color: #999;
-        }
-
-        .current-price {
-            font-weight: 700;
-            color: #000;
-        }
-
-        /* Coleções */
-        .collections-section {
-            padding: 50px 0 80px 0;
-            background: #fff;
-        }
-
-        .collection-card {
-            min-width: 350px;
-            height: 480px;
-            flex-shrink: 0;
-            position: relative;
-            cursor: pointer;
-            overflow: hidden;
-            background-color: #000;
-        }
-
-        .collection-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform .7s cubic-bezier(0.16, 1, 0.3, 1);
-            opacity: .9;
-        }
-
-        .banner-title-span {
-            position: absolute;
-            bottom: 30px;
-            left: 20px;
-            color: #fff;
-            font-size: 24px;
-            font-weight: 900;
-            text-transform: uppercase;
-            font-style: italic;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
-            z-index: 2;
-        }
-
-        .collection-card:hover img {
-            transform: scale(1.05);
-            opacity: .7;
-        }
-
-        .collection-card.coming-soon {
-            cursor: default;
-        }
-
-        .collection-card.coming-soon img {
-            filter: grayscale(100%) brightness(.4);
-        }
-
-        .coming-soon-badge {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border: 2px solid #fff;
-            color: #fff;
-            padding: 10px 20px;
-            font-size: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            z-index: 3;
-            white-space: nowrap;
-        }
-
-        .coming-soon-text {
-            display: block;
-            font-size: 12px;
-            font-weight: 400;
-            color: #ccc;
-            margin-top: 5px;
-        }
-
-        /* FOOTER */
-        .footer-story {
-            background-color: #f9f9f9;
-            padding: 60px 40px;
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            justify-content: center;
-        }
-
-        .footer-logo-circle {
-            width: 80px;
-            height: 80px;
-            border: 2px solid #333;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .footer-logo-circle span {
-            font-size: 40px;
-            font-weight: 900;
-            font-style: italic;
-            font-family: serif;
-        }
-
-        .footer-story-text {
-            font-size: 14px;
-            line-height: 1.6;
-            color: #666;
-            max-width: 800px;
-        }
-
-        .footer-main {
-            padding: 60px 40px 100px 40px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 40px;
-            border-top: 1px solid #eee;
-        }
-
-        .footer-col-news {
-            flex: 2;
-            min-width: 300px;
-        }
-
-        .footer-col-links {
-            flex: 1;
-            min-width: 150px;
-        }
-    </style>
-
+    <link rel="stylesheet" href="/css/card.css">
+    <link rel="stylesheet" href="/css/carousel-container.css">
+    <link rel="stylesheet" href="/css/carousel-card.css">
 </head>
 
 <body>
@@ -382,75 +42,35 @@
             <h2>BLACK FRIDAY PILGRIM 2025</h2>
         </div>
 
-        <div class="carousel-container" id="productCarousel">
-
+        <carousel-container>
             <product-card url="/produto/camisa-1" image="imagens/camisa1.jpg" discount="0.25"
                 title="Camisa Oversized Pilgrim" price="120"></product-card>
-
             <product-card url="/produto/id" image="imagens/camisa1.jpg" price="120"
                 title="CAMISETA CORE PILGRIM HOLY WHITE"></product-card>
-        </div>
+        </carousel-container>
     </section>
 
     <section class="collections-section">
         <div class="section-header">
             <h2>COLEÇÕES</h2>
         </div>
-        <div class="carousel-container" id="collectionsCarousel">
-            <div class="collection-card">
-                <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1000&auto=format&fit=crop"
-                    alt="Camisas Pilgrim">
-                <span class="banner-title-span">PILGRIM X CAMISAS</span>
-            </div>
-            <div class="collection-card coming-soon">
-                <div class="coming-soon-badge">EM BREVE</div>
-                <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=1000&auto=format&fit=crop"
-                    alt="Bonés">
-                <span class="banner-title-span">PILGRIM X BONÉS<span class="coming-soon-text">LANÇAMENTO
-                        2025</span></span>
-            </div>
-            <div class="collection-card coming-soon">
-                <div class="coming-soon-badge">EM BREVE</div>
-                <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?q=80&w=1000&auto=format&fit=crop"
-                    alt="Bermudas">
-                <span class="banner-title-span">PILGRIM X BERMUDAS<span class="coming-soon-text">LANÇAMENTO
-                        2025</span></span>
-            </div>
-            <div class="collection-card coming-soon">
-                <div class="coming-soon-badge">EM BREVE</div>
-                <img src="https://images.unsplash.com/photo-1582586043130-9b69996d91f4?q=80&w=1000&auto=format&fit=crop"
-                    alt="Meias">
-                <span class="banner-title-span">PILGRIM X MEIAS<span class="coming-soon-text">LANÇAMENTO
-                        2025</span></span>
-            </div>
-        </div>
+        <carousel-container>
+            <carousel-card
+                image="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1000&auto=format&fit=crop"
+                title="PILGRIM X CAMISAS"></carousel-card>
+            <carousel-card
+                image="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=1000&auto=format&fit=crop"
+                title="PILGRIM X CAMISAS" comingSoon description="LANÇAMENTO 2025"></carousel-card>
+        </carousel-container>
     </section>
 
     <div data-include="components/footer.html"></div>
     <div data-include="components/chatbot.html"></div>
 
     <script src="layout/card.js"></script> <!-- Import this to can use the cards -->
+    <script src="layout/carousel-card.js"></script>
+    <script src="layout/carousel-container.js"></script>
     <script src="scripts/include.js"></script>
-    <script>
-        const sliders = [document.getElementById('productCarousel'), document.getElementById('collectionsCarousel')];
-        sliders.forEach(slider => {
-            let isDown = false;
-            let startX;
-            let scrollLeft;
-            slider.addEventListener('mousedown', (e) => {
-                isDown = true; slider.style.cursor = 'grabbing';
-                startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft;
-            });
-            slider.addEventListener('mouseleave', () => { isDown = false; slider.style.cursor = 'pointer'; });
-            slider.addEventListener('mouseup', () => { isDown = false; slider.style.cursor = 'pointer'; });
-            slider.addEventListener('mousemove', (e) => {
-                if (!isDown) return; e.preventDefault();
-                const x = e.pageX - slider.offsetLeft; const walk = (x - startX) * 2;
-                slider.scrollLeft = scrollLeft - walk;
-            });
-        });
-    </script>
-
 </body>
 
 </html>
