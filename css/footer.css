@@ -1,0 +1,182 @@
+/* --- FOOTER (NOVO) --- */
+
+/* Parte 1: História (Fundo Cinza) */
+.footer-story {
+  background-color: #f9f9f9;
+  padding: 60px 40px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  justify-content: center;
+}
+
+.footer-logo-circle {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #333;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.footer-logo-circle span {
+  font-size: 40px;
+  font-weight: 900;
+  font-style: italic;
+  font-family: serif;
+}
+
+.footer-story-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #666;
+  max-width: 800px;
+}
+
+/* Parte 2: Links e News (Fundo Branco) */
+.footer-main {
+  padding: 60px 40px 100px 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  border-top: 1px solid #eee;
+}
+
+/* Coluna Newsletter */
+.footer-col-news {
+  flex: 2;
+  min-width: 300px;
+}
+
+.footer-col-links {
+  flex: 1;
+  min-width: 150px;
+}
+
+.footer-title {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  color: #000;
+  letter-spacing: 0.5px;
+}
+
+.news-text {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-underline {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.input-underline:focus {
+  border-bottom-color: #000;
+}
+
+.btn-subscribe {
+  width: 100%;
+  background-color: #555;
+  color: white;
+  border: none;
+  padding: 15px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+.btn-subscribe:hover {
+  background-color: #000;
+}
+
+.privacy-text {
+  font-size: 10px;
+  color: #999;
+  margin-top: 10px;
+}
+
+/* Links das colunas */
+.footer-list {
+  list-style: none;
+}
+
+.footer-list li {
+  margin-bottom: 12px;
+}
+
+.footer-list a {
+  text-decoration: none;
+  color: #666;
+  font-size: 13px;
+  transition: color 0.2s;
+}
+
+.footer-list a:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+/* Ícones Sociais e Selos */
+.footer-bottom-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  padding-top: 20px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 20px;
+}
+
+.social-icons i {
+  font-size: 20px;
+  color: #000;
+  cursor: pointer;
+}
+
+.security-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: #555;
+}
+
+/* RESPONSIVIDADE FOOTER */
+@media (max-width: 900px) {
+  .footer-main {
+    padding: 40px 20px 80px 20px;
+  }
+
+  .footer-story {
+    padding: 40px 20px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-bottom-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
