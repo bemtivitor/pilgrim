@@ -6,21 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pilgrim - Catholic Streetwear</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
 
     <style>
-        /* --- RESET --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: #fff;
-            overflow-x: hidden;
-        }
-
         /* --- 1. BARRA DE ANÚNCIO --- */
         .marquee-bar {
             background-color: #000;
@@ -55,139 +43,6 @@
             100% {
                 transform: translateX(-50%);
             }
-        }
-
-        /* --- 2. NAVBAR --- */
-        header {
-            width: 100%;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 40px;
-            position: fixed;
-            top: 30px;
-            left: 0;
-            background-color: rgba(255, 255, 255, 0.0);
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        header:hover {
-            background-color: #ffffff;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-
-        .logo a {
-            font-size: 28px;
-            font-weight: 900;
-            color: #000;
-            text-decoration: none;
-            letter-spacing: -1px;
-            font-style: italic;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-        }
-
-        .mobile-drawer {
-            display: none;
-        }
-
-        .nav-links li a {
-            text-decoration: none;
-            color: #000;
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: block;
-            height: 15px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .roll-container {
-            display: block;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .roll-text {
-            display: block;
-            height: 15px;
-            line-height: 15px;
-        }
-
-        .nav-links li a:hover .roll-container {
-            transform: translateY(-15px);
-        }
-
-        .nav-links li a.sale .roll-text {
-            color: #d32f2f;
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-
-        .search-box {
-            background-color: rgba(0, 0, 0, 0.05);
-            padding: 10px 15px;
-            display: flex;
-            align-items: center;
-            width: 200px;
-            border-radius: 4px;
-        }
-
-        .search-box input {
-            border: none;
-            background: transparent;
-            outline: none;
-            font-size: 13px;
-            width: 100%;
-        }
-
-        .action-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: #000;
-            font-size: 13px;
-            font-weight: 500;
-            text-transform: uppercase;
-        }
-
-        .action-item i {
-            font-size: 20px;
-        }
-
-        .cart-count {
-            position: absolute;
-            top: -5px;
-            right: -8px;
-            background-color: #000;
-            color: #fff;
-            font-size: 10px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .cart-icon-container {
-            position: relative;
         }
 
         /* --- 3. HERO SECTION --- */
@@ -243,7 +98,12 @@
             font-weight: 900;
             font-style: italic;
             text-transform: uppercase;
-            text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 5px 5px 15px rgba(0, 0, 0, 0.5);
+            text-shadow:
+                3px 3px 0 #000,
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                5px 5px 15px rgba(0, 0, 0, 0.5);
             text-align: center;
             pointer-events: none;
         }
@@ -381,8 +241,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-            opacity: 0.9;
+            transition: transform .7s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: .9;
         }
 
         .banner-title-span {
@@ -400,7 +260,7 @@
 
         .collection-card:hover img {
             transform: scale(1.05);
-            opacity: 0.7;
+            opacity: .7;
         }
 
         .collection-card.coming-soon {
@@ -408,7 +268,7 @@
         }
 
         .collection-card.coming-soon img {
-            filter: grayscale(100%) brightness(0.4);
+            filter: grayscale(100%) brightness(.4);
         }
 
         .coming-soon-badge {
@@ -432,14 +292,10 @@
             font-size: 12px;
             font-weight: 400;
             color: #ccc;
-            font-style: normal;
             margin-top: 5px;
         }
 
-
-        /* --- 6. FOOTER (NOVO) --- */
-
-        /* Parte 1: História (Fundo Cinza) */
+        /* FOOTER */
         .footer-story {
             background-color: #f9f9f9;
             padding: 60px 40px;
@@ -465,7 +321,6 @@
             font-weight: 900;
             font-style: italic;
             font-family: serif;
-            /* Estilo mais clássico para o P */
         }
 
         .footer-story-text {
@@ -475,10 +330,8 @@
             max-width: 800px;
         }
 
-        /* Parte 2: Links e News (Fundo Branco) */
         .footer-main {
             padding: 60px 40px 100px 40px;
-            /* Padding bottom extra para não cortar com o botão flutuante */
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
@@ -486,7 +339,6 @@
             border-top: 1px solid #eee;
         }
 
-        /* Coluna Newsletter (Maior) */
         .footer-col-news {
             flex: 2;
             min-width: 300px;
@@ -496,318 +348,8 @@
             flex: 1;
             min-width: 150px;
         }
-
-        .footer-title {
-            font-size: 12px;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            color: #000;
-            letter-spacing: 0.5px;
-        }
-
-        .news-text {
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        .input-group {
-            margin-bottom: 15px;
-        }
-
-        .input-underline {
-            width: 100%;
-            border: none;
-            border-bottom: 1px solid #ccc;
-            padding: 10px 0;
-            font-size: 14px;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .input-underline:focus {
-            border-bottom-color: #000;
-        }
-
-        .btn-subscribe {
-            width: 100%;
-            background-color: #555;
-            color: white;
-            border: none;
-            padding: 15px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background 0.3s;
-        }
-
-        .btn-subscribe:hover {
-            background-color: #000;
-        }
-
-        .privacy-text {
-            font-size: 10px;
-            color: #999;
-            margin-top: 10px;
-        }
-
-        /* Links das colunas */
-        .footer-list {
-            list-style: none;
-        }
-
-        .footer-list li {
-            margin-bottom: 12px;
-        }
-
-        .footer-list a {
-            text-decoration: none;
-            color: #666;
-            font-size: 13px;
-            transition: color 0.2s;
-        }
-
-        .footer-list a:hover {
-            color: #000;
-            text-decoration: underline;
-        }
-
-        /* Ícones Sociais e Selos */
-        .footer-bottom-row {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            /* Ícones na esq, selos na dir */
-            align-items: center;
-            margin-top: 40px;
-            padding-top: 20px;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 20px;
-        }
-
-        .social-icons i {
-            font-size: 20px;
-            color: #000;
-            cursor: pointer;
-        }
-
-        .security-badge {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 12px;
-            color: #555;
-        }
-
-
-        /* --- 7. BOTÃO FLUTUANTE CHATBOT --- */
-        .floating-chat-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background-color: #000;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            z-index: 9999;
-            /* Fica acima de tudo */
-            transition: transform 0.3s ease;
-        }
-
-        .floating-chat-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .chat-icon {
-            color: white;
-            font-size: 28px;
-            font-style: italic;
-            font-weight: 900;
-        }
-
-
-        /* --- RESPONSIVIDADE FOOTER --- */
-        @media (max-width: 900px) {
-            header {
-                padding: 0 20px;
-                height: 60px;
-            }
-
-            .nav-links,
-            .search-box,
-            .action-item span,
-            .action-item:not(.cart-icon-container) {
-                display: none;
-            }
-
-            .logo {
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-            .logo a {
-                font-size: 22px;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-                font-size: 20px;
-                cursor: pointer;
-            }
-
-            .mobile-drawer {
-                display: block;
-                position: fixed;
-                top: 0;
-                left: -100%;
-                width: 80%;
-                height: 100vh;
-                background: white;
-                z-index: 2000;
-                padding: 20px;
-                transition: 0.3s ease;
-            }
-
-            .mobile-drawer.active {
-                left: 0;
-            }
-
-            .drawer-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 30px;
-                border-bottom: 1px solid #eee;
-                padding-bottom: 15px;
-            }
-
-            .close-btn {
-                font-size: 24px;
-                cursor: pointer;
-            }
-
-            .mobile-links {
-                list-style: none;
-            }
-
-            .mobile-links li {
-                margin-bottom: 20px;
-            }
-
-            .mobile-links a {
-                text-decoration: none;
-                color: #000;
-                font-size: 18px;
-                font-weight: 700;
-                text-transform: uppercase;
-            }
-
-            .overlay {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: 1500;
-            }
-
-            .overlay.active {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 40px;
-                padding: 0 20px;
-            }
-
-            .bg-text-row {
-                font-size: 50px;
-            }
-
-            .products-section,
-            .collections-section {
-                padding: 30px 0;
-            }
-
-            .section-header {
-                padding: 0 20px;
-            }
-
-            .carousel-container {
-                padding: 0 20px 20px 20px;
-                gap: 10px;
-                scroll-snap-type: x mandatory;
-            }
-
-            .carousel-container::-webkit-scrollbar {
-                height: 4px;
-            }
-
-            .carousel-container::-webkit-scrollbar-track {
-                margin: 0 20px;
-            }
-
-            .product-card {
-                min-width: 160px;
-                width: 160px;
-                scroll-snap-align: start;
-            }
-
-            .product-card .image-wrapper {
-                height: 220px;
-            }
-
-            .collection-card {
-                min-width: 260px;
-                height: 380px;
-                scroll-snap-align: start;
-            }
-
-            .banner-title-span {
-                font-size: 18px;
-                left: 15px;
-                bottom: 20px;
-            }
-
-            /* Footer Mobile */
-            .footer-story {
-                flex-direction: column;
-                text-align: center;
-                gap: 20px;
-                padding: 40px 20px;
-            }
-
-            .footer-main {
-                flex-direction: column;
-                padding: 40px 20px 80px 20px;
-            }
-
-            /* 80px bottom pra não cobrir o chat */
-            .footer-col-links {
-                border-bottom: 1px solid #eee;
-                padding-bottom: 20px;
-            }
-
-            .footer-bottom-row {
-                flex-direction: column;
-                gap: 20px;
-            }
-        }
     </style>
+
 </head>
 
 <body>
@@ -842,59 +384,11 @@
 
         <div class="carousel-container" id="productCarousel">
 
-            <product-card url="/produto/camisa-1" image="/img/camisa1.png" discount="0.25"
+            <product-card url="/produto/camisa-1" image="imagens/camisa1.jpg" discount="0.25"
                 title="Camisa Oversized Pilgrim" price="120"></product-card>
 
-
-            <div class="product-card">
-                <a href="produto.html">
-                    <div class="image-wrapper">
-                        <img src="imagens/camisa2.jpg" alt="Camiseta"
-                            onerror="this.src='https://placehold.co/400x500/EEE/31343C?text=CAMISA+2'">
-                        <span class="discount-badge">-40% OFF</span>
-                    </div>
-                    <div class="product-info">
-                        <h3>CAMISETA CORE PILGRIM HOLY WHITE</h3>
-                        <div class="price-container">
-                            <span class="old-price">R$ 169,99</span>
-                            <span class="current-price">R$ 101,99</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="product-card">
-                <a href="produto.html">
-                    <div class="image-wrapper">
-                        <img src="imagens/camisa1.jpg" alt="Camiseta"
-                            onerror="this.src='https://placehold.co/400x500/EEE/31343C?text=CAMISA+3'">
-                        <span class="discount-badge">-60% OFF</span>
-                    </div>
-                    <div class="product-info">
-                        <h3>MOLETOM HOODIE PILGRIM BASIC</h3>
-                        <div class="price-container">
-                            <span class="old-price">R$ 399,90</span>
-                            <span class="current-price">R$ 159,90</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="product-card">
-                <a href="produto.html">
-                    <div class="image-wrapper">
-                        <img src="imagens/camisa1.jpg" alt="Camiseta"
-                            onerror="this.src='https://placehold.co/400x500/EEE/31343C?text=CAMISA+4'">
-                    </div>
-                    <div class="product-info">
-                        <h3>CAMISETA OVERSIZED PILGRIM BLESSED</h3>
-                        <div class="price-container">
-                            <span class="current-price">R$ 149,90</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
+            <product-card url="/produto/id" image="imagens/camisa1.jpg" price="120"
+                title="CAMISETA CORE PILGRIM HOLY WHITE"></product-card>
         </div>
     </section>
 
@@ -935,6 +429,7 @@
     <div data-include="components/footer.html"></div>
     <div data-include="components/chatbot.html"></div>
 
+    <script src="layout/card.js"></script> <!-- Import this to can use the cards -->
     <script src="scripts/include.js"></script>
     <script>
         const sliders = [document.getElementById('productCarousel'), document.getElementById('collectionsCarousel')];
