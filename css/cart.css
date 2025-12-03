@@ -1,0 +1,117 @@
+.cart-container-overlay {
+  background-color: rgba(0, 0, 0, 0.466);
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+}
+
+.cart-container {
+  height: 100vh;
+  width: 30vw;
+  background-color: white;
+  position: absolute;
+  overflow: hidden;
+  right: 0;
+  top: 0;
+  z-index: 21;
+}
+
+.cart-container>.x {
+  position: absolute;
+  right: 0.8em;
+  top: 0.8em;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.cart-container>.cart-title {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+  border-bottom: 1px solid rgb(161, 161, 161);
+}
+
+.cart-container>.cart-title>p {
+  font-size: 1em;
+  font-weight: 200;
+  text-transform: uppercase;
+}
+
+.cart-container>.cart-list {
+  padding: 1em;
+  height: 100%;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+.cart-list::-webkit-scrollbar {
+  background-color: black;
+  width: 4px;
+  padding: 4px;
+}
+
+.cart-list::-webkit-scrollbar-thumb {
+  background-color: white;
+}
+
+.cart-list>.card-container {
+  display: flex;
+  align-items: center;
+}
+
+.cart-list>.card-container>.card-image {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cart-list>.card-container>.card-image>img {
+  aspect-ratio: 1 / 1;
+  width: 100px;
+  object-fit: cover;
+}
+
+.cart-list>.card-container>.card-info {
+  display: grid;
+  margin-left: 12px;
+  height: 80px;
+  width: 100%;
+  grid-template-columns: 1fr auto;
+  align-content: space-around;
+}
+
+.cart-list>.card-container>.card-info>p {
+  font-size: 0.8rem;
+}
+
+.cart-list>.card-container>.card-info>p>span {
+  font-size: 0.7rem;
+}
+
+.cart-list>.card-container>.card-info>.trash {
+  justify-self: end;
+  cursor: pointer;
+}
+
+.cart-list>.card-container>.card-info>.card-actions {
+  border: 1px solid rgb(161, 161, 161);
+  border-radius: 4px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+  padding: 2px 4px;
+}
+
+.cart-list>.card-container>.card-info>.card-actions>button {
+  border: none;
+  background-color: transparent;
+  font-size: 0.8em;
+  cursor: pointer;
+  color: rgb(161, 161, 161);
+}
+
+.cart-list>.card-container>.card-info>.card-actions>p {
+  font-size: 0.8em;
+}

@@ -18,7 +18,7 @@
     <a href="#" class="action-item"><i class="fa-regular fa-heart"></i><span>Wishlist</span></a>
     <a href="#" class="action-item"><i class="fa-regular fa-user"></i><span>Entrar</span></a>
     <a href="#" class="action-item cart-icon-container"><i class="fa-solid fa-bag-shopping"></i>
-      <div class="cart-count">0</div>
+      <div class="cart-count" id="cart-count">0</div>
     </a>
   </div>
 </header>
@@ -35,11 +35,5 @@
   </ul>
 </div>
 
-<script>
-  function toggleMenu() {
-    const drawer = document.getElementById('mobileDrawer');
-    const overlay = document.querySelector('.overlay');
-    drawer.classList.toggle('active');
-    overlay.classList.toggle('active');
-  }
-</script>
+<script type="module" src="/features/toggleMenu.js"></script>
+<script type="module" src="/scripts/header.js"></script>
