@@ -1,13 +1,19 @@
 import { Cart } from "../features/cart.js";
-console.log("entrpu?");
 
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("entrpu?");
+function init() {
   const count = document.getElementById("cart-count");
+  if (!count) {
+    console.log("header not loaded yet… retrying");
+    requestAnimationFrame(init);
+    return;
+  }
 
   function updateCount() {
     count.textContent = Cart.getCount();
   }
 
   updateCount();
-});
+  Cart.addEventListener("change", updateCount);
+}
+
+init();

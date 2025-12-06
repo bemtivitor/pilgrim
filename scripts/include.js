@@ -8,16 +8,17 @@ function includeHTML() {
     el.querySelectorAll("script").forEach((oldScript) => {
       const newScript = document.createElement("script");
 
-      if (oldScript.src) {
-        newScript.src = oldScript.src;
-      } else {
+      for (const { name, value } of oldScript.attributes) {
+        newScript.setAttribute(name, value);
+      }
+
+      if (!oldScript.src) {
         newScript.textContent = oldScript.textContent;
       }
 
-      document.body.appendChild(newScript);
-      oldScript.remove();
+      oldScript.replaceWith(newScript);
     });
   });
 }
 
-includeHTML();
+document.addEventListener("DOMContentLoaded", includeHTML);

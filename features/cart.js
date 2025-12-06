@@ -1,12 +1,19 @@
+// features/cart.js
 class CartStore extends EventTarget {
   constructor() {
     super();
     this.key = "cart";
-    this.items = JSON.parse(localStorage.getItem(this.key)) || [];
+    try {
+      this.items = JSON.parse(localStorage.getItem(this.key)) || [];
+    } catch {
+      this.items = [];
+    }
   }
 
   _emit() {
-    this.dispatchEvent(new CustomEvent("change", { detail: this.items }));
+    this.dispatchEvent(
+      new CustomEvent("change", { detail: structuredClone(this.items) })
+    );
   }
 
   save() {
@@ -14,21 +21,51 @@ class CartStore extends EventTarget {
     this._emit();
   }
 
-  add(product) {
+  add(product, amount = 1) {
+    if (!product || !product.id) return;
     const existing = this.items.find(
-      (i) => i.id === product.id && product.size === i.size
+      (i) => i.id === product.id && i.size === product.size
     );
 
     if (existing) {
-      existing.quantity += 1;
+      existing.quantity = (existing.quantity || 0) + Number(amount);
     } else {
-      this.items.push({ ...product, quantity: 1 });
+      this.items.push({ ...product, quantity: Number(amount) });
     }
     this.save();
   }
 
-  remove(id) {
-    this.items = this.items.filter((product) => product.id !== id);
+  setQuantity(id, size, quantity) {
+    quantity = Number(quantity);
+    const idx = this.items.findIndex((i) => i.id === id && i.size === size);
+    if (idx === -1) return;
+
+    if (quantity <= 0) {
+      this.items.splice(idx, 1);
+    } else {
+      this.items[idx].quantity = quantity;
+    }
+    this.save();
+  }
+
+  changeQuantity(id, size, delta) {
+    const item = this.items.find((i) => i.id === id && i.size === size);
+    if (!item) return;
+    item.quantity = (item.quantity || 0) + Number(delta);
+    if (item.quantity <= 0) {
+      this.items = this.items.filter((i) => !(i.id === id && i.size === size));
+    }
+    this.save();
+  }
+
+  remove(id, size) {
+    if (typeof size === "undefined") {
+      this.items = this.items.filter((product) => product.id !== id);
+    } else {
+      this.items = this.items.filter(
+        (product) => !(product.id === id && product.size === size)
+      );
+    }
     this.save();
   }
 
@@ -38,9 +75,10 @@ class CartStore extends EventTarget {
   }
 
   getCount() {
-    // ver com o vitor se aqui vai mostrar a quantidade de "tipos" de produtos, ou contar cada produto, mesmo que seja mais que um
-    // return this.items.length
-    return this.items.reduce((sum, item) => item.quantity + sum, 0);
+    return this.items.reduce(
+      (sum, item) => sum + (Number(item.quantity) || 0),
+      0
+    );
   }
 }
 

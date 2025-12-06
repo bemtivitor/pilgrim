@@ -61,32 +61,20 @@
   </div>
 </header>
 
-<div class="overlay"></div>
+<div class="overlay" onclick="toggleMenu()"></div>
 <div class="mobile-drawer" id="mobileDrawer">
   <div class="drawer-header">
-    <span style="font-weight: 900; font-style: italic">MENU</span
-    ><i class="fa-solid fa-xmark close-btn""></i>
+    <span style="font-weight: 900; font-style: italic">MENU</span>
+    <i class="fa-solid fa-xmark close-btn" onclick="toggleMenu()"></i>
   </div>
   <ul class="mobile-links">
-    <li><a href="#">Loja</a></li>
-    <li><a href="#">Coleções</a></li>
-    <li><a href="#">Lançamentos</a></li>
-    <li><a href="#" style="color: #d32f2f">Sale</a></li>
+    <li><a href="#" onclick="toggleMenu()">Loja</a></li>
+    <li><a href="#" onclick="toggleMenu()">Coleções</a></li>
+    <li><a href="#" onclick="toggleMenu()">Lançamentos</a></li>
+    <li><a href="#" style="color: #d32f2f" onclick="toggleMenu()">Sale</a></li>
   </ul>
 </div>
 
 <script type="module" src="/scripts/header.js"></script>
 <script type="module" src="/features/toggleCart.js"></script>
-<script type="module">
-  import { toggleMenu } from "../features/toggleMenu.js";
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const menuBtn = document.querySelector(".mobile-menu-btn");
-    const overlay = document.querySelector(".overlay");
-    const closeBtns = document.querySelectorAll(".close-btn");
-
-    menuBtn.addEventListener("click", toggleMenu);
-    overlay.addEventListener("click", toggleMenu);
-    closeBtns.forEach((btn) => btn.addEventListener("click", toggleMenu));
-  });
-</script>
+<script type="module" src="/features/toggleMenu.js"></script>

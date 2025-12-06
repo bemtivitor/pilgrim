@@ -129,6 +129,10 @@
 .cart-list .card-info p {
   font-size: 0.85rem;
   color: #222;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
 }
 
 .cart-list .card-info p span {
