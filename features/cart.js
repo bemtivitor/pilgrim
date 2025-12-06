@@ -10,18 +10,21 @@ class CartStore extends EventTarget {
   }
 
   save() {
-    localStorage.setItems(this.key, JSON.stringify(this.items));
+    localStorage.setItem(this.key, JSON.stringify(this.items));
     this._emit();
   }
 
   add(product) {
-    const existing = this.items.find((i) => i.id === product.id);
+    const existing = this.items.find(
+      (i) => i.id === product.id && product.size === i.size
+    );
 
     if (existing) {
       existing.quantity += 1;
     } else {
       this.items.push({ ...product, quantity: 1 });
     }
+    this.save();
   }
 
   remove(id) {

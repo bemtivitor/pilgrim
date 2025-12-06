@@ -1,11 +1,13 @@
-import { Cart } from "../features/cart";
+import { Cart } from "../features/cart.js";
+console.log("entrpu?");
 
-const counter = document.querySelector("#cart-count");
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("entrpu?");
+  const count = document.getElementById("cart-count");
 
-function updateCartBadge() {
-  counter.textContent = Cart.getCount();
-}
+  function updateCount() {
+    count.textContent = Cart.getCount();
+  }
 
-updateCartBadge();
-
-window.addEventListener("cart:change", updateCartBadge);
+  updateCount();
+});

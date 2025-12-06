@@ -1,750 +1,748 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Camiseta Pilgrim Cross - Produto</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
     <style>
-        /* --- RESET & GLOBAL --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      /* --- RESET & GLOBAL --- */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+
+      body {
+        background-color: #fff;
+        overflow-x: hidden;
+        color: #000;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      /* --- 1. BARRA DE ANÚNCIO (MARQUEE - IGUAL INDEX) --- */
+      .marquee-bar {
+        background-color: #000;
+        color: #fff;
+        height: 30px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        z-index: 12;
+      }
+
+      .marquee-content {
+        display: flex;
+        animation: scroll 20s linear infinite;
+        white-space: nowrap;
+      }
+
+      .marquee-content span {
+        padding: 0 40px;
+      }
+
+      @keyframes scroll {
+        0% {
+          transform: translateX(0);
         }
 
-        body {
-            background-color: #fff;
-            overflow-x: hidden;
-            color: #000;
+        100% {
+          transform: translateX(-50%);
         }
+      }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+      /* --- 2. NAVBAR (IGUAL INDEX COM ANIMAÇÕES) --- */
+      header {
+        width: 100%;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        position: fixed;
+        top: 30px;
+        left: 0;
+        background-color: #ffffff;
+        /* Fundo branco fixo para leitura no produto */
+        border-bottom: 1px solid #e5e5e5;
+        transition: all 0.3s ease;
+        z-index: 10;
+      }
 
-        ul {
-            list-style: none;
-        }
+      /* LOGO */
+      .logo a {
+        font-size: 28px;
+        font-weight: 900;
+        color: #000;
+        text-decoration: none;
+        letter-spacing: -1px;
+        font-style: italic;
+      }
 
-        /* --- 1. BARRA DE ANÚNCIO (MARQUEE - IGUAL INDEX) --- */
-        .marquee-bar {
-            background-color: #000;
-            color: #fff;
-            height: 30px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 12;
-        }
+      /* LINKS COM ANIMAÇÃO ROLETA */
+      .nav-links {
+        display: flex;
+        gap: 30px;
+        list-style: none;
+      }
 
-        .marquee-content {
-            display: flex;
-            animation: scroll 20s linear infinite;
-            white-space: nowrap;
-        }
+      .nav-links li a {
+        text-decoration: none;
+        color: #000;
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: block;
+        height: 15px;
+        overflow: hidden;
+        position: relative;
+      }
 
-        .marquee-content span {
-            padding: 0 40px;
-        }
+      .roll-container {
+        display: block;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
 
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
+      .roll-text {
+        display: block;
+        height: 15px;
+        line-height: 15px;
+      }
 
-            100% {
-                transform: translateX(-50%);
-            }
-        }
+      .nav-links li a:hover .roll-container {
+        transform: translateY(-15px);
+      }
 
-        /* --- 2. NAVBAR (IGUAL INDEX COM ANIMAÇÕES) --- */
+      .nav-links li a.sale .roll-text {
+        color: #d32f2f;
+      }
+
+      /* AÇÕES */
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+      }
+
+      .search-box {
+        background-color: #f4f4f4;
+        padding: 10px 15px;
+        display: flex;
+        align-items: center;
+        width: 200px;
+        border-radius: 4px;
+      }
+
+      .search-box input {
+        border: none;
+        background: transparent;
+        outline: none;
+        font-size: 13px;
+        width: 100%;
+      }
+
+      .action-item {
+        font-size: 13px;
+        font-weight: 500;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .action-item i {
+        font-size: 20px;
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -5px;
+        right: -8px;
+        background-color: #000;
+        color: #fff;
+        font-size: 10px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .cart-icon-container {
+        position: relative;
+      }
+
+      /* Mobile Trigger */
+      .mobile-menu-btn {
+        display: none;
+      }
+
+      .mobile-drawer {
+        display: none;
+      }
+
+      /* --- 3. LAYOUT DA PÁGINA DE PRODUTO --- */
+      .product-page {
+        /* IMPORTANTE: Padding top maior para compensar Header (80px) + Marquee (30px) */
+        padding: 130px 40px 40px 40px;
+        display: flex;
+        gap: 50px;
+        min-height: 100vh;
+      }
+
+      /* Galeria */
+      .product-gallery {
+        flex: 1.5;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .gallery-item {
+        width: 100%;
+        height: auto;
+        background-color: #f9f9f9;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* Info Sticky */
+      .product-info {
+        flex: 1;
+        position: sticky;
+        top: 130px;
+        /* Ajustado para ficar abaixo do header fixo */
+        height: fit-content;
+        max-width: 450px;
+      }
+
+      /* Elementos do Produto */
+      .breadcrumb {
+        font-size: 11px;
+        color: #999;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      .tag-desconto {
+        background-color: #000;
+        color: #fff;
+        padding: 4px 8px;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+
+      h1 {
+        font-size: 24px;
+        font-weight: 800;
+        text-transform: uppercase;
+        line-height: 1.2;
+        margin-bottom: 5px;
+      }
+
+      .sku {
+        font-size: 12px;
+        color: #999;
+        margin-bottom: 20px;
+        display: block;
+      }
+
+      .price-wrapper {
+        margin-bottom: 25px;
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+      }
+
+      .price-old {
+        text-decoration: line-through;
+        color: #ccc;
+        font-size: 14px;
+      }
+
+      .price-new {
+        font-size: 22px;
+        font-weight: 700;
+        color: #000;
+      }
+
+      /* Tamanhos */
+      .size-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .size-label {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .size-guide {
+        font-size: 12px;
+        text-decoration: underline;
+        cursor: pointer;
+        color: #555;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .size-selector {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 30px;
+      }
+
+      .size-selector input {
+        display: none;
+      }
+
+      .size-box {
+        width: 45px;
+        height: 45px;
+        border: 1px solid #e5e5e5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .size-box:hover {
+        border-color: #000;
+      }
+
+      .size-selector input:checked + .size-box {
+        background-color: #000;
+        color: #fff;
+        border-color: #000;
+      }
+
+      .size-box.disabled {
+        color: #e0e0e0;
+        background-color: #f9f9f9;
+        border-color: #eee;
+        cursor: not-allowed;
+        text-decoration: line-through;
+      }
+
+      /* Botões */
+      .btn-add-cart {
+        width: 100%;
+        background-color: #222;
+        color: #fff;
+        padding: 18px;
+        border: none;
+        font-size: 13px;
+        font-weight: 800;
+        text-transform: uppercase;
+        cursor: pointer;
+        margin-bottom: 15px;
+        transition: background 0.3s;
+      }
+
+      .btn-add-cart:hover {
+        background-color: #000;
+      }
+
+      .btn-whatsapp {
+        width: 100%;
+        background-color: #fff;
+        color: #000;
+        padding: 15px;
+        border: 1px solid #e5e5e5;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 30px;
+        transition: border 0.3s;
+      }
+
+      .btn-whatsapp:hover {
+        border-color: #000;
+      }
+
+      /* Frete & Share */
+      .shipping-calc {
+        border-top: 1px solid #eee;
+        padding-top: 20px;
+      }
+
+      .shipping-calc p {
+        font-size: 12px;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+
+      .shipping-input-group {
+        display: flex;
+        gap: 10px;
+      }
+
+      .shipping-input-group input {
+        flex: 1;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        padding: 10px 0;
+        font-size: 13px;
+        outline: none;
+      }
+
+      .btn-calc {
+        background-color: #333;
+        color: white;
+        border: none;
+        padding: 0 20px;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .share-section {
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .share-label {
+        font-size: 11px;
+        color: #666;
+      }
+
+      .share-icons i {
+        font-size: 16px;
+        margin-right: 15px;
+        cursor: pointer;
+        color: #333;
+      }
+
+      /* Footer */
+      footer {
+        background-color: #f9f9f9;
+        padding: 60px 40px;
+        margin-top: 50px;
+        text-align: center;
+        font-size: 12px;
+        color: #666;
+      }
+
+      /* --- RESPONSIVIDADE MOBILE (COM DRAWER) --- */
+      @media (max-width: 900px) {
         header {
-            width: 100%;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 40px;
-            position: fixed;
-            top: 30px;
-            left: 0;
-            background-color: #ffffff;
-            /* Fundo branco fixo para leitura no produto */
-            border-bottom: 1px solid #e5e5e5;
-            transition: all 0.3s ease;
-            z-index: 10;
+          padding: 0 20px;
+          height: 60px;
         }
 
-        /* LOGO */
+        .nav-links,
+        .search-box,
+        .action-item span,
+        .action-item:not(.cart-icon-container) {
+          display: none;
+        }
+
+        .logo {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
         .logo a {
-            font-size: 28px;
-            font-weight: 900;
-            color: #000;
-            text-decoration: none;
-            letter-spacing: -1px;
-            font-style: italic;
+          font-size: 22px;
         }
 
-        /* LINKS COM ANIMAÇÃO ROLETA */
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-links li a {
-            text-decoration: none;
-            color: #000;
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: block;
-            height: 15px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .roll-container {
-            display: block;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .roll-text {
-            display: block;
-            height: 15px;
-            line-height: 15px;
-        }
-
-        .nav-links li a:hover .roll-container {
-            transform: translateY(-15px);
-        }
-
-        .nav-links li a.sale .roll-text {
-            color: #d32f2f;
-        }
-
-        /* AÇÕES */
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-
-        .search-box {
-            background-color: #f4f4f4;
-            padding: 10px 15px;
-            display: flex;
-            align-items: center;
-            width: 200px;
-            border-radius: 4px;
-        }
-
-        .search-box input {
-            border: none;
-            background: transparent;
-            outline: none;
-            font-size: 13px;
-            width: 100%;
-        }
-
-        .action-item {
-            font-size: 13px;
-            font-weight: 500;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .action-item i {
-            font-size: 20px;
-        }
-
-        .cart-count {
-            position: absolute;
-            top: -5px;
-            right: -8px;
-            background-color: #000;
-            color: #fff;
-            font-size: 10px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .cart-icon-container {
-            position: relative;
-        }
-
-        /* Mobile Trigger */
+        /* Botão Menu */
         .mobile-menu-btn {
-            display: none;
+          display: block;
+          font-size: 20px;
+          cursor: pointer;
         }
 
+        /* Drawer Mobile */
         .mobile-drawer {
-            display: none;
+          display: block;
+          position: fixed;
+          top: 0;
+          left: -100%;
+          width: 80%;
+          height: 100vh;
+          background: white;
+          z-index: 20;
+          padding: 20px;
+          transition: 0.3s ease;
         }
 
-        /* --- 3. LAYOUT DA PÁGINA DE PRODUTO --- */
+        .mobile-drawer.active {
+          left: 0;
+        }
+
+        .drawer-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 30px;
+          border-bottom: 1px solid #eee;
+          padding-bottom: 15px;
+        }
+
+        .close-btn {
+          font-size: 24px;
+          cursor: pointer;
+        }
+
+        .mobile-links {
+          list-style: none;
+        }
+
+        .mobile-links li {
+          margin-bottom: 20px;
+        }
+
+        .mobile-links a {
+          text-decoration: none;
+          color: #000;
+          font-size: 18px;
+          font-weight: 700;
+          text-transform: uppercase;
+        }
+
+        .overlay {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.5);
+          z-index: 15;
+        }
+
+        .overlay.active {
+          display: block;
+        }
+
+        /* Ajustes Produto Mobile */
         .product-page {
-            /* IMPORTANTE: Padding top maior para compensar Header (80px) + Marquee (30px) */
-            padding: 130px 40px 40px 40px;
-            display: flex;
-            gap: 50px;
-            min-height: 100vh;
+          flex-direction: column;
+          padding: 100px 0 0 0;
+          gap: 20px;
         }
 
-        /* Galeria */
         .product-gallery {
-            flex: 1.5;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
+          grid-template-columns: 1fr;
+          gap: 0;
         }
 
-        .gallery-item {
-            width: 100%;
-            height: auto;
-            background-color: #f9f9f9;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* Info Sticky */
         .product-info {
-            flex: 1;
-            position: sticky;
-            top: 130px;
-            /* Ajustado para ficar abaixo do header fixo */
-            height: fit-content;
-            max-width: 450px;
-        }
-
-        /* Elementos do Produto */
-        .breadcrumb {
-            font-size: 11px;
-            color: #999;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .tag-desconto {
-            background-color: #000;
-            color: #fff;
-            padding: 4px 8px;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            display: inline-block;
-            margin-bottom: 10px;
+          padding: 0 20px 40px 20px;
         }
 
         h1 {
-            font-size: 24px;
-            font-weight: 800;
-            text-transform: uppercase;
-            line-height: 1.2;
-            margin-bottom: 5px;
-        }
-
-        .sku {
-            font-size: 12px;
-            color: #999;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .price-wrapper {
-            margin-bottom: 25px;
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-        }
-
-        .price-old {
-            text-decoration: line-through;
-            color: #ccc;
-            font-size: 14px;
-        }
-
-        .price-new {
-            font-size: 22px;
-            font-weight: 700;
-            color: #000;
-        }
-
-        /* Tamanhos */
-        .size-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .size-label {
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .size-guide {
-            font-size: 12px;
-            text-decoration: underline;
-            cursor: pointer;
-            color: #555;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .size-selector {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
-
-        .size-selector input {
-            display: none;
+          font-size: 20px;
         }
 
         .size-box {
-            width: 45px;
-            height: 45px;
-            border: 1px solid #e5e5e5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
+          width: 40px;
+          height: 40px;
         }
-
-        .size-box:hover {
-            border-color: #000;
-        }
-
-        .size-selector input:checked+.size-box {
-            background-color: #000;
-            color: #fff;
-            border-color: #000;
-        }
-
-        .size-box.disabled {
-            color: #e0e0e0;
-            background-color: #f9f9f9;
-            border-color: #eee;
-            cursor: not-allowed;
-            text-decoration: line-through;
-        }
-
-        /* Botões */
-        .btn-add-cart {
-            width: 100%;
-            background-color: #222;
-            color: #fff;
-            padding: 18px;
-            border: none;
-            font-size: 13px;
-            font-weight: 800;
-            text-transform: uppercase;
-            cursor: pointer;
-            margin-bottom: 15px;
-            transition: background 0.3s;
-        }
-
-        .btn-add-cart:hover {
-            background-color: #000;
-        }
-
-        .btn-whatsapp {
-            width: 100%;
-            background-color: #fff;
-            color: #000;
-            padding: 15px;
-            border: 1px solid #e5e5e5;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 30px;
-            transition: border 0.3s;
-        }
-
-        .btn-whatsapp:hover {
-            border-color: #000;
-        }
-
-        /* Frete & Share */
-        .shipping-calc {
-            border-top: 1px solid #eee;
-            padding-top: 20px;
-        }
-
-        .shipping-calc p {
-            font-size: 12px;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .shipping-input-group {
-            display: flex;
-            gap: 10px;
-        }
-
-        .shipping-input-group input {
-            flex: 1;
-            border: none;
-            border-bottom: 1px solid #ccc;
-            padding: 10px 0;
-            font-size: 13px;
-            outline: none;
-        }
-
-        .btn-calc {
-            background-color: #333;
-            color: white;
-            border: none;
-            padding: 0 20px;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-        }
-
-        .share-section {
-            margin-top: 30px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .share-label {
-            font-size: 11px;
-            color: #666;
-        }
-
-        .share-icons i {
-            font-size: 16px;
-            margin-right: 15px;
-            cursor: pointer;
-            color: #333;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #f9f9f9;
-            padding: 60px 40px;
-            margin-top: 50px;
-            text-align: center;
-            font-size: 12px;
-            color: #666;
-        }
-
-        /* --- RESPONSIVIDADE MOBILE (COM DRAWER) --- */
-        @media (max-width: 900px) {
-            header {
-                padding: 0 20px;
-                height: 60px;
-            }
-
-            .nav-links,
-            .search-box,
-            .action-item span,
-            .action-item:not(.cart-icon-container) {
-                display: none;
-            }
-
-            .logo {
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-            .logo a {
-                font-size: 22px;
-            }
-
-            /* Botão Menu */
-            .mobile-menu-btn {
-                display: block;
-                font-size: 20px;
-                cursor: pointer;
-            }
-
-            /* Drawer Mobile */
-            .mobile-drawer {
-                display: block;
-                position: fixed;
-                top: 0;
-                left: -100%;
-                width: 80%;
-                height: 100vh;
-                background: white;
-                z-index: 20;
-                padding: 20px;
-                transition: 0.3s ease;
-            }
-
-            .mobile-drawer.active {
-                left: 0;
-            }
-
-            .drawer-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 30px;
-                border-bottom: 1px solid #eee;
-                padding-bottom: 15px;
-            }
-
-            .close-btn {
-                font-size: 24px;
-                cursor: pointer;
-            }
-
-            .mobile-links {
-                list-style: none;
-            }
-
-            .mobile-links li {
-                margin-bottom: 20px;
-            }
-
-            .mobile-links a {
-                text-decoration: none;
-                color: #000;
-                font-size: 18px;
-                font-weight: 700;
-                text-transform: uppercase;
-            }
-
-            .overlay {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: 15;
-            }
-
-            .overlay.active {
-                display: block;
-            }
-
-            /* Ajustes Produto Mobile */
-            .product-page {
-                flex-direction: column;
-                padding: 100px 0 0 0;
-                gap: 20px;
-            }
-
-            .product-gallery {
-                grid-template-columns: 1fr;
-                gap: 0;
-            }
-
-            .product-info {
-                padding: 0 20px 40px 20px;
-            }
-
-            h1 {
-                font-size: 20px;
-            }
-
-            .size-box {
-                width: 40px;
-                height: 40px;
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <div class="marquee-bar">
-        <div class="marquee-content">
-            <span>BLACK FRIDAY PILGRIM 2025 - FRETE GRÁTIS ACIMA DE R$299 - 10X SEM JUROS</span>
-            <span>BLACK FRIDAY PILGRIM 2025 - FRETE GRÁTIS ACIMA DE R$299 - 10X SEM JUROS</span>
-        </div>
+      <div class="marquee-content">
+        <span
+          >BLACK FRIDAY PILGRIM 2025 - FRETE GRÁTIS ACIMA DE R$299 - 10X SEM
+          JUROS</span
+        >
+        <span
+          >BLACK FRIDAY PILGRIM 2025 - FRETE GRÁTIS ACIMA DE R$299 - 10X SEM
+          JUROS</span
+        >
+      </div>
     </div>
 
-    <header>
-        <div class="mobile-menu-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
-
-        <div class="logo"><a href="index.html">PILGRIM</a></div>
-
-        <ul class="nav-links">
-            <li><a href="index.html"><span class="roll-container"><span class="roll-text">LOJA</span><span
-                            class="roll-text">LOJA</span></span></a></li>
-            <li><a href="#"><span class="roll-container"><span class="roll-text">COLEÇÕES</span><span
-                            class="roll-text">COLEÇÕES</span></span></a></li>
-            <li><a href="#"><span class="roll-container"><span class="roll-text">LANÇAMENTOS</span><span
-                            class="roll-text">LANÇAMENTOS</span></span></a></li>
-            <li><a href="#" class="sale"><span class="roll-container"><span class="roll-text">SALE</span><span
-                            class="roll-text">SALE</span></span></a></li>
-        </ul>
-
-        <div class="nav-actions">
-            <div class="search-box"><input type="text" placeholder="Procurar"><i
-                    class="fa-solid fa-magnifying-glass"></i></div>
-            <a href="#" class="action-item"><i class="fa-regular fa-heart"></i><span>Wishlist</span></a>
-            <a href="#" class="action-item"><i class="fa-regular fa-user"></i><span>Entrar</span></a>
-            <a href="#" class="action-item cart-icon-container"><i class="fa-solid fa-bag-shopping"></i>
-                <div class="cart-count">0</div>
-            </a>
-        </div>
-    </header>
-
-    <div class="overlay" onclick="toggleMenu()"></div>
-    <div class="mobile-drawer" id="mobileDrawer">
-        <div class="drawer-header">
-            <span style="font-weight:900; font-style:italic;">MENU</span>
-            <i class="fa-solid fa-xmark close-btn" onclick="toggleMenu()"></i>
-        </div>
-        <ul class="mobile-links">
-            <li><a href="index.html">Loja</a></li>
-            <li><a href="#">Coleções</a></li>
-            <li><a href="#">Lançamentos</a></li>
-            <li><a href="#" style="color: #d32f2f;">Sale</a></li>
-        </ul>
-    </div>
+    <div data-include="components/nav.html"></div>
+    <div data-include="components/cart.html"></div>
 
     <div class="product-page">
+      <div class="product-gallery">
+        <div class="gallery-item">
+          <img src="imagens/camisa1.jpg" alt="Camiseta Pilgrim Frente" />
+        </div>
+        <div class="gallery-item">
+          <img
+            src="imagens/camisa1.jpg"
+            style="transform: scaleX(-1)"
+            alt="Camiseta Pilgrim Costas"
+          />
+        </div>
+        <div class="gallery-item">
+          <img
+            src="imagens/camisa1.jpg"
+            style="filter: brightness(0.9)"
+            alt="Camiseta Pilgrim Detalhe"
+          />
+        </div>
+        <div class="gallery-item">
+          <img
+            src="imagens/camisa1.jpg"
+            style="filter: contrast(1.1)"
+            alt="Camiseta Pilgrim Lifestyle"
+          />
+        </div>
+      </div>
 
-        <div class="product-gallery">
-            <div class="gallery-item">
-                <img src="imagens/camisa1.jpg" alt="Camiseta Pilgrim Frente">
-            </div>
-            <div class="gallery-item">
-                <img src="imagens/camisa1.jpg" style="transform: scaleX(-1);" alt="Camiseta Pilgrim Costas">
-            </div>
-            <div class="gallery-item">
-                <img src="imagens/camisa1.jpg" style="filter: brightness(0.9);" alt="Camiseta Pilgrim Detalhe">
-            </div>
-            <div class="gallery-item">
-                <img src="imagens/camisa1.jpg" style="filter: contrast(1.1);" alt="Camiseta Pilgrim Lifestyle">
-            </div>
+      <div class="product-info">
+        <div class="breadcrumb">INICIO / CAMISETAS / CORE</div>
+
+        <span class="tag-desconto">-40% OFF</span>
+        <h1>CAMISETA CORE PILGRIM CROSS BLACK</h1>
+        <span class="sku">SKU: PIL-001-BLK</span>
+
+        <div class="price-wrapper">
+          <span class="price-old">R$ 169,99</span>
+          <span class="price-new">R$ 101,99</span>
         </div>
 
-        <div class="product-info">
-            <div class="breadcrumb">INICIO / CAMISETAS / CORE</div>
-
-            <span class="tag-desconto">-40% OFF</span>
-            <h1>CAMISETA CORE PILGRIM CROSS BLACK</h1>
-            <span class="sku">SKU: PIL-001-BLK</span>
-
-            <div class="price-wrapper">
-                <span class="price-old">R$ 169,99</span>
-                <span class="price-new">R$ 101,99</span>
-            </div>
-
-            <div class="size-header">
-                <span class="size-label">Tamanhos</span>
-                <span class="size-guide"><i class="fa-solid fa-ruler-horizontal"></i> Tabela de medidas</span>
-            </div>
-
-            <div class="size-selector">
-                <label>
-                    <input type="radio" name="size" value="P">
-                    <span class="size-box">P</span>
-                </label>
-                <label>
-                    <input type="radio" name="size" value="M">
-                    <span class="size-box">M</span>
-                </label>
-                <label>
-                    <input type="radio" name="size" value="G" checked>
-                    <span class="size-box">G</span>
-                </label>
-                <label>
-                    <input type="radio" name="size" value="GG">
-                    <span class="size-box">GG</span>
-                </label>
-                <label>
-                    <input type="radio" name="size" value="XG" disabled>
-                    <span class="size-box disabled">XG</span>
-                </label>
-            </div>
-
-            <button class="btn-add-cart">SELECIONE O TAMANHO</button>
-            <button class="btn-whatsapp">
-                PEDIDO VIA WHATSAPP <i class="fa-brands fa-whatsapp"></i>
-            </button>
-
-            <div class="shipping-calc">
-                <p>Simular Frete</p>
-                <div class="shipping-input-group">
-                    <input type="text" placeholder="Digite seu CEP">
-                    <button class="btn-calc">Consultar</button>
-                </div>
-            </div>
-
-            <div class="share-section">
-                <span class="share-label">Compartilhar:</span>
-                <div class="share-icons">
-                    <i class="fa-brands fa-whatsapp"></i>
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-pinterest"></i>
-                    <i class="fa-solid fa-link"></i>
-                </div>
-            </div>
-
+        <div class="size-header">
+          <span class="size-label">Tamanhos</span>
+          <span class="size-guide"
+            ><i class="fa-solid fa-ruler-horizontal"></i> Tabela de
+            medidas</span
+          >
         </div>
+
+        <div class="size-selector">
+          <label>
+            <input type="radio" name="size" value="P" />
+            <span class="size-box">P</span>
+          </label>
+          <label>
+            <input type="radio" name="size" value="M" />
+            <span class="size-box">M</span>
+          </label>
+          <label>
+            <input type="radio" name="size" value="G" checked />
+            <span class="size-box">G</span>
+          </label>
+          <label>
+            <input type="radio" name="size" value="GG" />
+            <span class="size-box">GG</span>
+          </label>
+          <label>
+            <input type="radio" name="size" value="XG" disabled />
+            <span class="size-box disabled">XG</span>
+          </label>
+        </div>
+
+        <button class="btn-add-cart">SELECIONE O TAMANHO</button>
+        <button class="btn-whatsapp">
+          PEDIDO VIA WHATSAPP <i class="fa-brands fa-whatsapp"></i>
+        </button>
+
+        <div class="shipping-calc">
+          <p>Simular Frete</p>
+          <div class="shipping-input-group">
+            <input type="text" placeholder="Digite seu CEP" />
+            <button class="btn-calc">Consultar</button>
+          </div>
+        </div>
+
+        <div class="share-section">
+          <span class="share-label">Compartilhar:</span>
+          <div class="share-icons">
+            <i class="fa-brands fa-whatsapp"></i>
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-pinterest"></i>
+            <i class="fa-solid fa-link"></i>
+          </div>
+        </div>
+      </div>
     </div>
 
     <footer>
-        <p>© 2025 PILGRIM. TODOS OS DIREITOS RESERVADOS.</p>
+      <p>© 2025 PILGRIM. TODOS OS DIREITOS RESERVADOS.</p>
     </footer>
 
-    <script>
-        // Função do Menu Mobile
-        function toggleMenu() {
-            const drawer = document.getElementById('mobileDrawer');
-            const overlay = document.querySelector('.overlay');
-            drawer.classList.toggle('active');
-            overlay.classList.toggle('active');
-        }
+    <script type="module">
+      import { Cart } from "./features/cart.js";
 
-        // Muda o texto do botão ao selecionar tamanho
-        const sizeInputs = document.querySelectorAll('input[name="size"]');
-        const buyBtn = document.querySelector('.btn-add-cart');
+      document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.querySelector(".btn-add-cart");
 
-        sizeInputs.forEach(input => {
-            input.addEventListener('change', (e) => {
-                buyBtn.textContent = "ADICIONAR À SACOLA - TAMANHO " + e.target.value;
-                buyBtn.style.backgroundColor = "#000";
-            });
+        btn.addEventListener("click", () => {
+          const size = document.querySelector(
+            'input[name="size"]:checked'
+          )?.value;
+
+          if (!size) {
+            alert("Selecione um tamanho!");
+            return;
+          }
+
+          const product = {
+            id: document.querySelector(".sku").textContent.trim(),
+            name: document.querySelector("h1").textContent.trim(),
+            price: parseFloat(
+              document
+                .querySelector(".price-new")
+                .textContent.replace("R$", "")
+                .replace(",", ".")
+            ),
+            size,
+            image: document.querySelector(".product-gallery img").src,
+          };
+
+          Cart.add(product);
         });
+      });
     </script>
 
-</body>
-
+    <script type="module" src="/layout/cart-item.js"></script>
+    <script type="module" src="/features/cart.js"></script>
+    <script type="module" src="/features/toggleCart.js"></script>
+    <script src="/scripts/include.js"></script>
+  </body>
 </html>
