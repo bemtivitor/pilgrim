@@ -17,9 +17,10 @@
     <div class="search-box"><input type="text" placeholder="Procurar"><i class="fa-solid fa-magnifying-glass"></i></div>
     <a href="#" class="action-item"><i class="fa-regular fa-heart"></i><span>Wishlist</span></a>
     <a href="#" class="action-item"><i class="fa-regular fa-user"></i><span>Entrar</span></a>
-    <a href="#" class="action-item cart-icon-container"><i class="fa-solid fa-bag-shopping"></i>
+    <button onclick="toggleCart()" class="action-item button-open-cart-list cart-icon-container"><i
+        class="fa-solid fa-bag-shopping"></i>
       <div class="cart-count" id="cart-count">0</div>
-    </a>
+    </button>
   </div>
 </header>
 
@@ -37,3 +38,4 @@
 
 <script type="module" src="/features/toggleMenu.js"></script>
 <script type="module" src="/scripts/header.js"></script>
+<script type="module" src="/features/toggleCart.js"></script>

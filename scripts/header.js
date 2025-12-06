@@ -1,4 +1,4 @@
-import { Cart } from "./cart.js";
+import { Cart } from "../features/cart";
 
 const counter = document.querySelector("#cart-count");
 
