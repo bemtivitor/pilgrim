@@ -4,7 +4,7 @@ import { Carousel } from "@/components/carousel";
 export default function Home() {
   return (
     <div className="grid">
-      <section className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-[#e0e0e0] -mt-[30px]">
+      <section className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-[#e0e0e0] -mt-7.5">
         {/* Animated background */}
         <div className="absolute left-[-50%] top-[-50%] h-[200%] w-[200%] rotate-[-15deg] opacity-[0.15] animate-move-bg">
           {Array.from({ length: 10 }).map((_, index) => (
@@ -26,13 +26,13 @@ export default function Home() {
         </h1>
       </section>
 
-      <section className="bg-white py-[50px] pb-[30px]">
-        <h2 className="text-2xl mb-[30px] px-10 font-black italic uppercase">
+      <section className="bg-white py-12.5 pb-7.5">
+        <h2 className="text-2xl mb-7.5 px-10 font-black italic uppercase">
           BLACK FRIDAY PILGRIM 2025
         </h2>
 
         {/* Carousel container (simple horizontal scroll) */}
-        <div className="flex gap-6 overflow-x-auto px-10">
+        <Carousel>
           <Card.product
             url="/produto/camisa-1"
             image="/camisa1.jpg"
@@ -47,7 +47,7 @@ export default function Home() {
             title="CAMISETA CORE PILGRIM HOLY WHITE"
             price={120}
           />
-        </div>
+        </Carousel>
       </section>
 
       <section className="py-8">

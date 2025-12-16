@@ -40,7 +40,7 @@ export function Carousel({ children }: PropsWithChildren) {
   return (
     <div
       ref={ref}
-      className="carousel-container flex gap-5 overflow-x-auto px-10 py-2"
+      className="carousel-container max-w-screen flex gap-5 overflow-x-auto px-10 py-2"
       onPointerDown={onPointerDown}
       onPointerUp={onPointerUp}
       onPointerCancel={onPointerUp}
