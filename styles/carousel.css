@@ -2,6 +2,7 @@
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: #000 #f4f4f4;
+  user-select: none;
 }
 
 /* webkit */

@@ -19,13 +19,13 @@ export function Menu() {
       {/* HEADER */}
       <header
         className="
-          fixed top-[30px] left-0 z-1000
+          fixed top-7.5 left-0 z-1000
           flex h-20 w-full items-center justify-between
           px-10
           bg-white/0
           transition-all duration-300
           hover:bg-white hover:shadow-md
-          lg:h-[60px]
+          lg:h-15
         "
       >
         {/* MOBILE BUTTON */}
@@ -51,25 +51,25 @@ export function Menu() {
         </div>
 
         {/* NAV LINKS */}
-        <ul className="hidden  list-none gap-[30px] lg:flex">
+        <ul className="hidden  list-none gap-7.5 lg:flex">
           {["LOJA", "COLEÇÕES", "LANÇAMENTOS"].map((item) => (
             <li key={item}>
               <Link
                 href="#"
                 className="
-                  relative block h-[15px] overflow-hidden
+                  relative block h-3.75 overflow-hidden
                   text-[13px] font-semibold uppercase tracking-[0.5px] text-black
                 "
               >
                 <span
                   className="
                     block transition-transform duration-400
-                    [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]
-                    hover:-translate-y-[15px]
+                    ease-[cubic-bezier(0.16,1,0.3,1)]
+                    hover:-translate-y-3.75
                   "
                 >
-                  <span className="block h-[15px] leading-[15px]">{item}</span>
-                  <span className="block h-[15px] leading-[15px]">{item}</span>
+                  <span className="block h-3.75 leading-3.75">{item}</span>
+                  <span className="block h-3.75 leading-3.75">{item}</span>
                 </span>
               </Link>
             </li>
@@ -80,26 +80,26 @@ export function Menu() {
             <Link
               href="#"
               className="
-                relative block h-[15px] overflow-hidden
+                relative block h-3.75 overflow-hidden
                 text-[13px] font-semibold uppercase tracking-[0.5px] text-[#d32f2f]
               "
             >
               <span
                 className="
                   block transition-transform duration-400
-                  [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]
-                  hover:-translate-y-[15px]
+                  ease-[cubic-bezier(0.16,1,0.3,1)]
+                  hover:-translate-y-3.75
                 "
               >
-                <span className="block h-[15px] leading-[15px]">SALE</span>
-                <span className="block h-[15px] leading-[15px]">SALE</span>
+                <span className="block h-3.75 leading-3.75">SALE</span>
+                <span className="block h-3.75 leading-3.75">SALE</span>
               </span>
             </Link>
           </li>
         </ul>
 
         {/* ACTIONS */}
-        <div className="flex items-center gap-[25px]">
+        <div className="flex items-center gap-6.25">
           {/* SEARCH */}
           <div
             className="
@@ -139,7 +139,7 @@ export function Menu() {
             <IconShoppingBag />
             <span
               className="
-                absolute -top-[5px] -right-2
+                absolute -top-1.25 -right-2
                 flex h-4 w-4 items-center justify-center
                 rounded-full bg-black text-[10px] text-white
               "
@@ -171,7 +171,7 @@ export function Menu() {
         `}
       >
         {/* HEADER */}
-        <div className="mb-[30px] flex items-center justify-between border-b pb-[15px]">
+        <div className="mb-7.5 flex items-center justify-between border-b pb-3.75">
           <span className="font-black italic">MENU</span>
           <button type="button" onClick={() => setOpen(false)}>
             <IconX size={24} />
