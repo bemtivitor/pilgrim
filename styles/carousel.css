@@ -1,0 +1,26 @@
+.carousel-container {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #000 #f4f4f4;
+}
+
+/* webkit */
+.carousel-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.carousel-container::-webkit-scrollbar-track {
+  background: #f4f4f4;
+  border-radius: 10px;
+  margin: 0 40px;
+}
+
+.carousel-container::-webkit-scrollbar-thumb {
+  background-color: #000;
+  border-radius: 10px;
+  border: 1px solid #f4f4f4;
+}
+
+.carousel-container::-webkit-scrollbar-thumb:hover {
+  background-color: #333;
+}
