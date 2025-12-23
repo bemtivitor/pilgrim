@@ -1,40 +1,67 @@
 "use client";
 
 import { type PropsWithChildren, useRef, useState } from "react";
-import "@/styles/carousel.css"; // <-- CSS for scrollbar + a few helpers
+import "@/styles/carousel.css";
+
+const DRAG_THRESHOLD = 6;
 
 export function Carousel({ children }: PropsWithChildren) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const isDownRef = useRef(false);
-  const startXRef = useRef(0);
-  const scrollLeftRef = useRef(0);
-  const [, setGrab] = useState(false); // trigger rerender to update cursor if needed
+
+  const isPointerDown = useRef(false);
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const startScrollLeft = useRef(0);
+
+  const [, forceRender] = useState(false);
 
   function onPointerDown(e: React.PointerEvent<HTMLDivElement>) {
     const el = ref.current;
     if (!el) return;
-    isDownRef.current = true;
-    el.setPointerCapture(e.pointerId);
-    setGrab(true);
-    startXRef.current = e.pageX - el.offsetLeft;
-    scrollLeftRef.current = el.scrollLeft;
-  }
 
-  function onPointerUp(e: React.PointerEvent<HTMLDivElement>) {
-    const el = ref.current;
-    if (!el) return;
-    isDownRef.current = false;
-    el.releasePointerCapture(e.pointerId);
-    setGrab(false);
+    isPointerDown.current = true;
+    isDragging.current = false;
+
+    startX.current = e.clientX;
+    startScrollLeft.current = el.scrollLeft;
   }
 
   function onPointerMove(e: React.PointerEvent<HTMLDivElement>) {
     const el = ref.current;
-    if (!el || !isDownRef.current) return;
+    if (!el || !isPointerDown.current) return;
+
+    const dx = e.clientX - startX.current;
+
+    // Start drag ONLY after threshold
+    if (!isDragging.current && Math.abs(dx) > DRAG_THRESHOLD) {
+      isDragging.current = true;
+
+      // Capture pointer only NOW
+      el.setPointerCapture(e.pointerId);
+      forceRender((v) => !v);
+    }
+
+    if (!isDragging.current) return;
+
     e.preventDefault();
-    const x = e.pageX - el.offsetLeft;
-    const walk = (x - startXRef.current) * 2; // scroll speed
-    el.scrollLeft = scrollLeftRef.current - walk;
+    el.scrollLeft = startScrollLeft.current - dx;
+  }
+
+  function endDrag(e: React.PointerEvent<HTMLDivElement>) {
+    const el = ref.current;
+    if (!el) return;
+
+    if (isDragging.current) {
+      el.releasePointerCapture(e.pointerId);
+    }
+
+    isPointerDown.current = false;
+
+    // Delay reset so click event can fire
+    requestAnimationFrame(() => {
+      isDragging.current = false;
+      forceRender((v) => !v);
+    });
   }
 
   return (
@@ -42,11 +69,11 @@ export function Carousel({ children }: PropsWithChildren) {
       ref={ref}
       className="carousel-container flex gap-5 overflow-x-auto px-10 py-2"
       onPointerDown={onPointerDown}
-      onPointerUp={onPointerUp}
-      onPointerCancel={onPointerUp}
-      onPointerLeave={onPointerUp}
       onPointerMove={onPointerMove}
-      style={{ cursor: isDownRef.current ? "grabbing" : "grab" }}
+      onPointerUp={endDrag}
+      onPointerCancel={endDrag}
+      onPointerLeave={endDrag}
+      style={{ cursor: isDragging.current ? "grabbing" : "grab" }}
     >
       {children}
     </div>

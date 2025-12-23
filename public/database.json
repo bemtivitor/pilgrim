@@ -1,0 +1,32 @@
+{
+  "products": [
+    {
+      "id": "p-001",
+      "image": "/camisa1.jpg",
+      "title": "Basic White T-Shirt",
+      "price": 120,
+      "discount": 0.20
+    },
+    {
+      "id": "p-002",
+      "image": "/camisa1.jpg",
+      "title": "Black Oversized T-Shirt",
+      "price": 99.9,
+      "discount": 0.4
+    }
+  ],
+  "collections": [
+    {
+      "id": "c-001",
+      "title": "Summer Collection",
+      "image": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=1000&auto=format&fit=crop"
+    },
+    {
+      "id": "c-002",
+      "title": "Winter Drop",
+      "comingSoon": true,
+      "releaseDate": "2026-06-01",
+      "image": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=1000&auto=format&fit=crop"
+    }
+  ]
+}

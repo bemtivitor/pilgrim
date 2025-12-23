@@ -21,12 +21,12 @@ export function CollectionCard({
     <a
       href={comingSoon ? undefined : href}
       aria-disabled={comingSoon}
-      className={`relative min-w-[350px] h-[480px] shrink-0 overflow-hidden bg-black ${
+      className={`relative min-w-87.5 h-120 shrink-0 overflow-hidden bg-black ${
         comingSoon ? "pointer-events-none" : "cursor-pointer"
       }`}
     >
       <div
-        className={`absolute inset-0 transition-transform duration-700 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]
+        className={`absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]
           ${comingSoon ? "filter grayscale brightness-[0.4]" : "group-hover:scale-105"}
         `}
         style={{ willChange: "transform, opacity" }}
@@ -54,7 +54,7 @@ export function CollectionCard({
         </div>
       )}
 
-      <span className="absolute bottom-[30px] left-5 z-20 text-white text-[24px] font-black uppercase italic drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+      <span className="absolute bottom-7.5 left-5 z-20 text-white text-[24px] font-black uppercase italic drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
         {title}
         {description ? (
           <span className="block mt-1 text-[12px] font-normal text-[#ccc]">
