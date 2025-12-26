@@ -1,1 +1,2 @@
-export { useCartUIStore } from "./cart.ui.store";
+export * from "./cart.store";
+export * from "./cart.ui.store";

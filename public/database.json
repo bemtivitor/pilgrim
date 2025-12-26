@@ -2,31 +2,80 @@
   "products": [
     {
       "id": "p-001",
-      "image": "/camisa1.jpg",
-      "title": "Basic White T-Shirt",
-      "price": 120,
-      "discount": 0.20
+      "name": "Basic White T-Shirt",
+      "description": "Classic white t-shirt made with premium cotton.",
+      "images": [
+        "/camisa1.jpg",
+        "/camisa2.jpg"
+      ],
+      "basePrice": 120,
+      "discount": 0.2,
+      "currency": "BRL",
+      "variants": [
+        {
+          "id": "v-001",
+          "size": "P",
+          "stock": 10,
+          "sku": "BWT-P"
+        },
+        {
+          "id": "v-002",
+          "size": "M",
+          "stock": 8,
+          "sku": "BWT-M"
+        },
+        {
+          "id": "v-003",
+          "size": "G",
+          "stock": 5,
+          "sku": "BWT-G",
+          "priceOverride": 130
+        }
+      ]
     },
     {
       "id": "p-002",
-      "image": "/camisa1.jpg",
-      "title": "Black Oversized T-Shirt",
-      "price": 99.9,
-      "discount": 0.4
+      "name": "Black Oversized T-Shirt",
+      "description": "Oversized black t-shirt with modern fit.",
+      "images": [
+        "/camisa1.jpg"
+      ],
+      "basePrice": 99.9,
+      "discount": 0.4,
+      "currency": "BRL",
+      "variants": [
+        {
+          "id": "v-004",
+          "size": "M",
+          "stock": 12,
+          "sku": "BOT-M"
+        },
+        {
+          "id": "v-005",
+          "size": "G",
+          "stock": 6,
+          "sku": "BOT-G"
+        }
+      ]
     }
   ],
   "collections": [
     {
       "id": "c-001",
       "title": "Summer Collection",
-      "image": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=1000&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=1000&auto=format&fit=crop",
+      "productIds": [
+        "p-001",
+        "p-002"
+      ]
     },
     {
       "id": "c-002",
       "title": "Winter Drop",
       "comingSoon": true,
       "releaseDate": "2026-06-01",
-      "image": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=1000&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=1000&auto=format&fit=crop",
+      "productIds": []
     }
   ]
 }

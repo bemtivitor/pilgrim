@@ -1,9 +1,12 @@
 import { Card } from "@/components/card";
 import { Carousel } from "@/components/carousel";
 import { getCollections, getProducts } from "@/lib/db";
+import { mapProductToCard } from "@/mappers/product-to-card.mapper";
 
 export default async function Home() {
   const products = await getProducts();
+  const mappedProducts = products.map(mapProductToCard);
+
   const collections = await getCollections();
   return (
     <div className="grid">
@@ -35,13 +38,14 @@ export default async function Home() {
         </h2>
 
         <Carousel>
-          {products.map((item) => (
+          {mappedProducts.map((item) => (
             <Card.product
-              key={item.id}
-              url={`/produtos/${item.id}`}
+              key={item.name}
+              url={item.url}
               image={item.image}
-              title={item.title}
+              name={item.name}
               price={item.price}
+              finalPrice={item.finalPrice}
               discount={item.discount}
             />
           ))}

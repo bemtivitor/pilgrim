@@ -1,11 +1,12 @@
 "use client";
 
-import { useCartUIStore } from "@/stores";
+import { useCartStore, useCartUIStore } from "@/stores";
 import { IconTrash, IconX } from "@tabler/icons-react";
 import Image from "next/image";
 
 export const Cart = () => {
   const { close, isOpen } = useCartUIStore();
+  const { list } = useCartStore();
   const isEmpty = false;
 
   return (
@@ -34,26 +35,22 @@ export const Cart = () => {
           </div>
 
           {/* Content */}
-          {isEmpty && (
+          {!list.length && (
             <div className="flex flex-1 flex-col items-center justify-center text-center">
               <p className="text-neutral-500">Seu carrinho está vazio</p>
             </div>
           )}
 
-          {!isEmpty && (
+          {!!list.length && (
             <div className="flex-1 space-y-4 overflow-y-auto pr-1 scrollbar-minimal">
-              <CartItem />
-              <CartItem />
-              <CartItem />
-              <CartItem />
-              <CartItem />
-              <CartItem />
-              <CartItem />
+              {list.map((item) => (
+                <CartItem key={item.product.id} />
+              ))}
             </div>
           )}
 
           {/* Footer */}
-          {!isEmpty && (
+          {!!list.length && (
             <div className="mt-6 border-t border-neutral-200 pt-4 space-y-4">
               <div className="flex items-center justify-between text-sm">
                 <span className="text-neutral-600">Total</span>
@@ -76,35 +73,45 @@ export const Cart = () => {
   );
 };
 
-const CartItem = () => {
+const CartItem = ({
+  name,
+  price,
+  description,
+  discount,
+  image,
+  size,
+}: TProduct) => {
   return (
     <div className="flex gap-4 rounded-xl border border-neutral-200 p-4">
       {/* Image */}
       <div className="h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-neutral-100">
-        <Image
-          src="/camisa1.jpg"
-          alt="Produto"
-          width={500}
-          height={500}
-          className="h-full w-full object-cover"
-        />
+        {image && (
+          <Image
+            src={image}
+            alt="Produto"
+            width={500}
+            height={500}
+            className="h-full w-full object-cover"
+          />
+        )}
       </div>
 
       {/* Content */}
       <div className="flex flex-1 flex-col justify-between">
         {/* Top */}
         <div>
-          <p className="text-sm font-medium text-neutral-900">
-            Camiseta Essential
-          </p>
-          <p className="text-xs text-neutral-500">Tamanho: M</p>
+          <p className="text-sm font-medium text-neutral-900">{name}</p>
+          <p className="text-xs text-neutral-500">Tamanho: {size}</p>
         </div>
 
         {/* Bottom */}
         <div className="flex items-center justify-between">
-          <span className="text-sm font-semibold text-neutral-900">
-            R$ 129,90
-          </span>
+          <p className="flex items-center gap-x-1">
+            <span className="text-sm font-semibold text-neutral-900">
+              R$ 129,90
+            </span>
+            <span></span>
+          </p>
 
           <div className="flex items-center gap-3">
             {/* Quantity */}
