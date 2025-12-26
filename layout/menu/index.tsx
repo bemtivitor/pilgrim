@@ -10,9 +10,11 @@ import {
   IconUser,
   IconX,
 } from "@tabler/icons-react";
+import { useCartUIStore } from "@/stores";
 
 export function Menu() {
   const [open, setOpen] = useState(false);
+  const { open: openCart } = useCartUIStore();
 
   return (
     <>
@@ -137,7 +139,7 @@ export function Menu() {
           {/* CART */}
           <button
             type="button"
-            onClick={() => localStorage.setItem("cart_state", "true")}
+            onClick={() => openCart()}
             className="relative flex items-center text-black cursor-pointer"
           >
             <IconShoppingBag />
