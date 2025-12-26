@@ -135,7 +135,11 @@ export function Menu() {
           ))}
 
           {/* CART */}
-          <Link href="#" className="relative flex items-center text-black">
+          <button
+            type="button"
+            onClick={() => localStorage.setItem("cart_state", "true")}
+            className="relative flex items-center text-black cursor-pointer"
+          >
             <IconShoppingBag />
             <span
               className="
@@ -146,7 +150,7 @@ export function Menu() {
             >
               0
             </span>
-          </Link>
+          </button>
         </div>
       </header>
 
