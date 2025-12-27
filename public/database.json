@@ -6,7 +6,7 @@
       "description": "Classic white t-shirt made with premium cotton.",
       "images": [
         "/camisa1.jpg",
-        "/camisa2.jpg"
+        "/camisa1.jpg"
       ],
       "basePrice": 120,
       "discount": 0.2,

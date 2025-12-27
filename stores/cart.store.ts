@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { TProduct } from "@/types";
+import type { TProduct } from "@/types/main";
 
 type CartItem = {
   product: TProduct;

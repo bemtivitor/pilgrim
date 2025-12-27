@@ -20,6 +20,7 @@ export async function getProducts() {
 
 export async function getProduct(slug: string): Promise<ProductDB | null> {
   const { products } = await getDatabase();
+
   return products.find((product) => product.id === slug) ?? null;
 }
 

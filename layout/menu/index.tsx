@@ -10,11 +10,12 @@ import {
   IconUser,
   IconX,
 } from "@tabler/icons-react";
-import { useCartUIStore } from "@/stores";
+import { useCartQuantity, useCartUIStore } from "@/stores";
 
 export function Menu() {
   const [open, setOpen] = useState(false);
   const { open: openCart } = useCartUIStore();
+  const quantity = useCartQuantity();
 
   return (
     <>
@@ -150,7 +151,7 @@ export function Menu() {
                 rounded-full bg-black text-[10px] text-white
               "
             >
-              0
+              {quantity}
             </span>
           </button>
         </div>
