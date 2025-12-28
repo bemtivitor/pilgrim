@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   IconHeart,
@@ -17,11 +17,45 @@ export function Menu() {
   const { open: openCart } = useCartUIStore();
   const quantity = useCartQuantity();
 
+  // Novos estados para controle do scroll
+  const [isHidden, setIsHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Se scrollar para baixo e já tiver passado de 50px, esconde
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        setIsHidden(true);
+      } else {
+        // Se scrollar para cima, mostra
+        setIsHidden(false);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
+
   return (
     <>
+      {/* ZONA INVISÍVEL DE HOVER NO TOPO */}
+      {/* Fica abaixo do header (z-900 vs z-1000) mas captura o mouse quando o header sobe */}
+      <div 
+        className="fixed top-0 left-0 w-full h-6 z-[900]" 
+        onMouseEnter={() => setIsHidden(false)}
+      />
+
       {/* HEADER */}
       <header
-        className="
+        onMouseEnter={() => setIsHidden(false)} // Garante que não suma se o mouse já estiver nele
+        className={`
           fixed top-7.5 left-0 z-1000
           flex h-20 w-full items-center justify-between
           px-10
@@ -29,7 +63,11 @@ export function Menu() {
           transition-all duration-300
           hover:bg-white hover:shadow-md
           lg:h-15
-        "
+          
+          /* Lógica de Animação */
+          transform
+          ${isHidden ? "-translate-y-[150%]" : "translate-y-0"}
+        `}
       >
         {/* MOBILE BUTTON */}
         <button
@@ -54,7 +92,7 @@ export function Menu() {
         </div>
 
         {/* NAV LINKS */}
-        <ul className="hidden  list-none gap-7.5 lg:flex">
+        <ul className="hidden list-none gap-7.5 lg:flex">
           {["LOJA", "COLEÇÕES", "LANÇAMENTOS"].map((item) => (
             <li key={item}>
               <Link
