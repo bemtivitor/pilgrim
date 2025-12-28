@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 import type { TProduct } from "@/types/main";
 
 type CartItem = {
@@ -16,57 +17,62 @@ type TCart = {
   clear: () => void;
 };
 
-export const useCartStore = create<TCart>((set) => ({
-  list: [],
+export const useCartStore = create<TCart>()(
+  persist(
+    (set) => ({
+      list: [],
 
-  addProduct: (product) =>
-    set((state) => {
-      const index = state.list.findIndex(
-        (item) => item.product.id === product.id,
-      );
+      addProduct: (product) =>
+        set((state) => {
+          const index = state.list.findIndex(
+            (item) => item.product.id === product.id,
+          );
 
-      if (index !== -1) {
-        const newList = [...state.list];
-        newList[index] = {
-          ...newList[index],
-          quantity: newList[index].quantity + 1,
-        };
+          if (index !== -1) {
+            const newList = [...state.list];
+            newList[index] = {
+              ...newList[index],
+              quantity: newList[index].quantity + 1,
+            };
 
-        return { list: newList };
-      }
+            return { list: newList };
+          }
 
-      return {
-        list: [...state.list, { product, quantity: 1 }],
-      };
+          return {
+            list: [...state.list, { product, quantity: 1 }],
+          };
+        }),
+
+      increaseQty: (id) =>
+        set((state) => ({
+          list: state.list.map((item) =>
+            item.product.id === id
+              ? { ...item, quantity: item.quantity + 1 }
+              : item,
+          ),
+        })),
+
+      decreaseQty: (id) =>
+        set((state) => ({
+          list: state.list
+            .map((item) =>
+              item.product.id === id
+                ? { ...item, quantity: item.quantity - 1 }
+                : item,
+            )
+            .filter((item) => item.quantity > 0),
+        })),
+
+      removeProduct: (id) =>
+        set((state) => ({
+          list: state.list.filter((item) => item.product.id !== id),
+        })),
+
+      clear: () => set({ list: [] }),
     }),
-
-  increaseQty: (id) =>
-    set((state) => ({
-      list: state.list.map((item) =>
-        item.product.id === id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item,
-      ),
-    })),
-
-  decreaseQty: (id) =>
-    set((state) => ({
-      list: state.list
-        .map((item) =>
-          item.product.id === id
-            ? { ...item, quantity: item.quantity - 1 }
-            : item,
-        )
-        .filter((item) => item.quantity > 0),
-    })),
-
-  removeProduct: (id) =>
-    set((state) => ({
-      list: state.list.filter((item) => item.product.id !== id),
-    })),
-
-  clear: () => set({ list: [] }),
-}));
+    { name: "cart" },
+  ),
+);
 
 export const useCartQuantity = () =>
   useCartStore((state) =>

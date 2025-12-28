@@ -1,13 +1,25 @@
 "use client";
 
 import { useCartStore, useCartUIStore } from "@/stores";
+import type { TProduct } from "@/types/main";
 import { IconTrash, IconX } from "@tabler/icons-react";
 import Image from "next/image";
+import { useMemo } from "react";
 
 export const Cart = () => {
   const { close, isOpen } = useCartUIStore();
   const { list } = useCartStore();
-  const isEmpty = false;
+
+  const total = useMemo(() => {
+    return list.reduce(
+      (prev, curr) =>
+        prev +
+        (curr.product.price -
+          curr.product.price * (curr.product.discount ?? 0)) *
+          curr.quantity,
+      0,
+    );
+  }, [list]);
 
   return (
     isOpen && (
@@ -44,7 +56,11 @@ export const Cart = () => {
           {!!list.length && (
             <div className="flex-1 space-y-4 overflow-y-auto pr-1 scrollbar-minimal">
               {list.map((item) => (
-                <CartItem key={item.product.id} />
+                <CartItem
+                  key={item.product.id}
+                  {...item.product}
+                  quantity={item.quantity}
+                />
               ))}
             </div>
           )}
@@ -55,7 +71,7 @@ export const Cart = () => {
               <div className="flex items-center justify-between text-sm">
                 <span className="text-neutral-600">Total</span>
                 <span className="font-semibold text-neutral-900">
-                  R$ 259,80
+                  R$ {total.toFixed(2)}
                 </span>
               </div>
 
@@ -76,11 +92,16 @@ export const Cart = () => {
 const CartItem = ({
   name,
   price,
-  description,
   discount,
   image,
+  quantity,
   size,
-}: TProduct) => {
+  id,
+}: TProduct & { quantity: number }) => {
+  const inc = useCartStore((s) => s.increaseQty);
+  const dec = useCartStore((s) => s.decreaseQty);
+  const del = useCartStore((s) => s.removeProduct);
+
   return (
     <div className="flex gap-4 rounded-xl border border-neutral-200 p-4">
       {/* Image */}
@@ -107,10 +128,14 @@ const CartItem = ({
         {/* Bottom */}
         <div className="flex items-center justify-between">
           <p className="flex items-center gap-x-1">
+            {discount && (
+              <span className="text-[10px] line-through text-neutral-500">
+                R$ {price.toFixed(2)}
+              </span>
+            )}
             <span className="text-sm font-semibold text-neutral-900">
-              R$ 129,90
+              R$ {(price - price * (discount ?? 0)).toFixed(2)}
             </span>
-            <span></span>
           </p>
 
           <div className="flex items-center gap-3">
@@ -119,13 +144,15 @@ const CartItem = ({
               <button
                 type="button"
                 className="px-2 py-1 text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200 cursor-pointer"
+                onClick={() => dec(id)}
               >
                 −
               </button>
-              <span className="px-2 text-sm">1</span>
+              <span className="px-2 text-sm">{quantity}</span>
               <button
                 type="button"
                 className="px-2 py-1 text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200 cursor-pointer"
+                onClick={() => inc(id)}
               >
                 +
               </button>
@@ -135,6 +162,7 @@ const CartItem = ({
             <button
               type="button"
               className="text-neutral-400 hover:text-red-500 transition cursor-pointer"
+              onClick={() => del(id)}
             >
               <IconTrash size={20} />
             </button>

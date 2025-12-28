@@ -2,8 +2,8 @@
 "use client";
 
 import { useCartStore } from "@/stores";
-import { ProductDB, ProductVariant } from "@/types/db";
-import { TProduct } from "@/types/main";
+import type { ProductDB, ProductVariant } from "@/types/db";
+import type { TProduct } from "@/types/main";
 import {
   IconBrandFacebook,
   IconBrandWhatsapp,
@@ -34,18 +34,17 @@ export default function ProductClient({ product }: Props) {
     (v) => v.id === selectedVariantId,
   );
 
-  const basePrice = product.basePrice;
+  const basePrice = useMemo(
+    () => selectedVariant?.priceOverride ?? product.basePrice,
+    [selectedVariant, product.basePrice],
+  );
   const discount = product.discount ?? 0;
 
   const unitPrice = useMemo(() => {
     if (!selectedVariant) {
       return Math.round(basePrice * (1 - discount) * 100) / 100;
     }
-    return (
-      Math.round(
-        (selectedVariant.priceOverride ?? basePrice * (1 - discount)) * 100,
-      ) / 100
-    );
+    return Math.round(basePrice * (1 - discount) * 100) / 100;
   }, [selectedVariant, basePrice, discount]);
 
   const originalPriceDisplay = useMemo(() => {
@@ -72,7 +71,7 @@ export default function ProductClient({ product }: Props) {
       id: selectedVariant.id,
       image: product.images.at(0), // TODO add a filter to get the main image
       description: product.description,
-      price: product.basePrice,
+      price: basePrice,
       discount: product.discount,
       size: selectedVariant.size,
       name: product.name,
