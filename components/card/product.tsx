@@ -7,28 +7,29 @@ import { useState } from "react";
 type ProductCardProps = {
   url: string;
   image: string;
-  title: string;
+  name: string;
   price: number;
+  finalPrice: number;
   discount?: number; // 0.25 = 25%
 };
 
 export function ProductCard({
   url,
   image,
-  title,
+  name,
+  finalPrice,
   price,
   discount = 0,
 }: ProductCardProps) {
   const [imgSrc, setImgSrc] = useState(image);
-  const discountedPrice = discount ? price - price * discount : price;
 
   return (
-    <div className="w-[477px] max-w-full shrink-0">
+    <div className="w-119.25 max-w-full shrink-0">
       <Link href={url} className="block">
         <div className="relative overflow-hidden">
           <Image
             src={imgSrc}
-            alt={title}
+            alt={name}
             width={500}
             height={320}
             className="h-80 w-full object-cover"
@@ -47,7 +48,7 @@ export function ProductCard({
         </div>
 
         <div className="mt-3">
-          <h3 className="text-sm font-bold uppercase">{title}</h3>
+          <h3 className="text-sm font-bold uppercase">{name}</h3>
 
           <div className="mt-1 flex items-center gap-2">
             {discount > 0 ? (
@@ -56,7 +57,7 @@ export function ProductCard({
                   R$ {price.toFixed(2)}
                 </span>
                 <span className="text-sm font-bold">
-                  R$ {discountedPrice.toFixed(2)}
+                  R$ {finalPrice.toFixed(2)}
                 </span>
               </>
             ) : (
