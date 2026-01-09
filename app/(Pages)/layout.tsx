@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "@/app/globals.css";
 import { Menu } from "@/layout/menu";
 import { Marquee } from "@/components/marquee";
+import { Cart } from "@/layout/cart";
+import { Footer } from "@/layout/footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,6 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <>
+      <Cart />
       <Marquee
         text="BLACK FRIDAY PILGRIM 2025 - FRETE GRÁTIS ACIMA DE R$299 - 10X SEM JUROS"
         speed={20}
@@ -23,6 +26,7 @@ export default function RootLayout({
 
       <Menu />
       {children}
+      <Footer />
     </>
   );
 }
