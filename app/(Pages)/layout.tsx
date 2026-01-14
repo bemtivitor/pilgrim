@@ -4,6 +4,7 @@ import { Menu } from "@/layout/menu";
 import { Marquee } from "@/components/marquee";
 import { Cart } from "@/layout/cart";
 import { Footer } from "@/layout/footer";
+import { SessionProvider } from "./sessionProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    <SessionProvider>
       <Cart />
       <Marquee
         text="BLACK FRIDAY PILGRIM 2025 - FRETE GRÁTIS ACIMA DE R$299 - 10X SEM JUROS"
@@ -27,6 +28,6 @@ export default function RootLayout({
       <Menu />
       {children}
       <Footer />
-    </>
+    </SessionProvider>
   );
 }
