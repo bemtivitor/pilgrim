@@ -2,17 +2,44 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const router = useRouter();
 
-    // TODO: register logic
-    console.log({ name, email, password });
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to register");
+      }
+
+      await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+
+      router.push("/");
+      setName("");
+      setEmail("");
+      setPassword("");
+    } catch (error) {
+      console.log("error on try to create user", error);
+    }
   };
 
   return (
@@ -95,7 +122,8 @@ export default function RegisterPage() {
           {/* Submit */}
           <button
             type="submit"
-            className="mt-2 w-full bg-black py-4.5 text-[13px] font-extrabold uppercase text-white transition hover:bg-[#111] cursor-pointer"
+            disabled={!name || !email || !password}
+            className="mt-2 w-full bg-black py-4.5 text-[13px] font-extrabold uppercase text-white transition hover:bg-[#111] cursor-pointer disabled:bg-black/70 disabled:cursor-auto"
           >
             Criar conta
           </button>
