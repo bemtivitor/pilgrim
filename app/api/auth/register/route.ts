@@ -4,12 +4,13 @@ import bcrypt from "bcrypt";
 export const runtime = "nodejs";
 export async function POST(req: Request) {
   try {
-    const { email, password } = (await req.json()) as {
+    const { email, password, name } = (await req.json()) as {
       email: string | null;
       password: string | null;
+      name: string | null;
     };
 
-    if (!email || !password)
+    if (!email || !password || !name)
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
 
     const exists = await prisma.user.findUnique({ where: { email } });
@@ -26,6 +27,7 @@ export async function POST(req: Request) {
       data: {
         email,
         password: hashedPassword,
+        name,
       },
     });
 

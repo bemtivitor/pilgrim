@@ -2,16 +2,32 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    try {
+      if (!email || !password) throw new Error("It is missing data");
 
-    // TODO: integrate auth logic
-    console.log({ email, password });
+      const res = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+      if (!res?.ok) throw new Error("error on try to sign in");
+
+      router.push("/");
+      setEmail("");
+      setPassword("");
+    } catch (error) {
+      console.error("Error on try to sign in: ", error);
+    }
   };
 
   return (

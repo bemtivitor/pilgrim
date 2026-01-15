@@ -11,6 +11,7 @@ import {
   IconX,
 } from "@tabler/icons-react";
 import { useCartQuantity, useCartUIStore } from "@/stores";
+import { Profile } from "../profile";
 
 export function Menu() {
   const [open, setOpen] = useState(false);
@@ -45,16 +46,13 @@ export function Menu() {
 
   return (
     <>
-      {/* ZONA INVISÍVEL DE HOVER NO TOPO */}
-      {/* Fica abaixo do header (z-900 vs z-1000) mas captura o mouse quando o header sobe */}
-      <div 
-        className="fixed top-0 left-0 w-full h-6 z-[900]" 
+      <div
+        className="fixed top-0 left-0 w-full h-6 z-900"
         onMouseEnter={() => setIsHidden(false)}
       />
 
-      {/* HEADER */}
       <header
-        onMouseEnter={() => setIsHidden(false)} // Garante que não suma se o mouse já estiver nele
+        onMouseEnter={() => setIsHidden(false)}
         className={`
           fixed top-7.5 left-0 z-1000
           flex h-20 w-full items-center justify-between
@@ -144,8 +142,8 @@ export function Menu() {
           {/* SEARCH */}
           <div
             className="
-              hidden w-[200px] items-center gap-2 rounded
-              bg-black/5 px-[15px] py-2.5
+              hidden w-70 items-center gap-2 rounded
+              bg-black/5 px-3.75 py-2.5
               lg:flex
             "
           >
@@ -157,23 +155,19 @@ export function Menu() {
           </div>
 
           {/* ACTION ITEMS */}
-          {[
-            { label: "Wishlist", icon: IconHeart },
-            { label: "Entrar", icon: IconUser },
-          ].map(({ label, icon: Icon }) => (
-            <Link
-              key={label}
-              href="#"
-              className="
+          <Link
+            href="#"
+            className="
                 hidden items-center gap-2
                 text-[13px] font-medium uppercase text-black
                 lg:flex
               "
-            >
-              <Icon />
-              <span>{label}</span>
-            </Link>
-          ))}
+          >
+            <IconHeart />
+            <span>Wishlist</span>
+          </Link>
+
+          <Profile />
 
           {/* CART */}
           <button
