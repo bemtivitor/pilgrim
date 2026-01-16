@@ -4,29 +4,41 @@ import Link from "next/link";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { IconFidgetSpinner } from "@tabler/icons-react";
 
 export default function Page() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      if (!email || !password) throw new Error("It is missing data");
+      setLoading(true);
+      if (!email || !password) {
+        setError("Está faltando dados");
+        return;
+      }
 
       const res = await signIn("credentials", {
         email,
         password,
         redirect: false,
       });
-      if (!res?.ok) throw new Error("error on try to sign in");
+      if (!res?.ok) {
+        setError("Email ou senha inválidos");
+        return;
+      }
 
       router.push("/");
       setEmail("");
       setPassword("");
     } catch (error) {
       console.error("Error on try to sign in: ", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -35,7 +47,7 @@ export default function Page() {
       <div className="w-full max-w-112.5">
         {/* Breadcrumb */}
         <div className="mb-5 text-[11px] font-semibold uppercase text-[#999]">
-          INÍCIO / LOGIN
+          <Link href={"/"}>INÍCIO</Link>/ LOGIN
         </div>
 
         {/* Title */}
@@ -100,7 +112,8 @@ export default function Page() {
           {/* Submit */}
           <button
             type="submit"
-            className="mt-2 w-full bg-black py-4.5 text-[13px] font-extrabold uppercase text-white transition hover:bg-[#111] cursor-pointer"
+            disabled={loading}
+            className="mt-2 w-full bg-black py-4.5 text-[13px] font-extrabold uppercase text-white transition hover:bg-[#111] cursor-pointer disabled:bg-black/75"
           >
             Entrar
           </button>
